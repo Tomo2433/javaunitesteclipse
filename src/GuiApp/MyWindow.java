@@ -11,13 +11,26 @@ public class MyWindow extends JFrame implements ActionListener {
     private final int WINDOW_WIDTH_SIZE = 650;
     private final int WINDOW_HEIGHT_SIZE = 450;
     private static final String ICON_PATH = "/resources/";
+    private JPanel contentPane;
 
     //icons definition
-    private Icon iconExit, mIconExit, iconAbout, mIconAbout, iconHelp, mIconHelp;
+    private Icon iconExit, iconAbout, iconHelp, iconAdd,
+            iconAvg, iconFill, iconLogin, iconLogout,
+            iconMax, iconMin, iconPrint, iconZero, iconSave,
+            iconSigma;
+    private Icon mIconExit, mIconAbout, mIconHelp, mIconAdd,
+            mIconAvg, mIconFill, mIconLogin, mIconLogout,
+            mIconMax, mIconMin, mIconPrint, mIconZero, mIconSave,
+            mIconSigma;
 
     //menu variables definition
     private JMenu fileMenu, editMenu, viewMenu, calculationsMenu, helpMenu;
     private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem;
+
+    //toolbar variables definition
+    JButton jtbSave, jtbPrint, jtbExit, jtbAdd, jtbZero,
+            jtbFill, jtbSigma, jtbAvg, jtbMin,
+            jtbMax, jtbHelp, jtbAbout;
 
     public MyWindow(){
         setTitle("MyWindow v1.0.1");
@@ -31,7 +44,7 @@ public class MyWindow extends JFrame implements ActionListener {
             }
         });
 
-        JPanel contentPane = (JPanel) getContentPane();
+        contentPane = (JPanel) getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         try{
@@ -40,7 +53,7 @@ public class MyWindow extends JFrame implements ActionListener {
                 public void run() {
                     createIcons();
                     createMenus();
-                    contentPane.add(createCenterPanel(), BorderLayout.CENTER);
+                    createGUI();
                 }
             });
         }
@@ -50,13 +63,35 @@ public class MyWindow extends JFrame implements ActionListener {
     }
     private void createIcons(){
         //create 24x24px icons for toolbar
-        iconExit = createMyIcon("close.jpg");
-        iconAbout = createMyIcon("about.jpg");
-        iconHelp = createMyIcon("help_context.jpg");
+        iconExit = createMyIcon("exit.png");
+        iconAbout = createMyIcon("about.png");
+        iconHelp = createMyIcon("help.png");
+        iconAdd = createMyIcon("add.png");
+        iconAvg = createMyIcon("avg.png");
+        iconFill = createMyIcon("fill.png");
+        iconLogin = createMyIcon("login.png");
+        iconLogout = createMyIcon("logout.png");
+        iconMax = createMyIcon("max.png");
+        iconMin = createMyIcon("min.png");
+        iconPrint = createMyIcon("print.png");
+        iconZero = createMyIcon("zero.png");
+        iconSave = createMyIcon("save.png");
+        iconSigma = createMyIcon("sigma.png");
         //create 16x16px icons for menubar
-        mIconExit = createMyIcon("min_close.jpg");
-        mIconAbout = createMyIcon("min_about.jpg");
-        mIconHelp = createMyIcon("min_help_context.jpg");
+        mIconExit = createMyIcon("min_close.png");
+        mIconAbout = createMyIcon("min_about.png");
+        mIconHelp = createMyIcon("min_help.png");
+        mIconAdd = createMyIcon("min_add.png");
+        mIconAvg = createMyIcon("min_avg.png");
+        mIconFill = createMyIcon("min_fill.png");
+        mIconLogin = createMyIcon("min_login.png");
+        mIconLogout = createMyIcon("min_logout.png");
+        mIconMax = createMyIcon("min_max.png");
+        mIconMin = createMyIcon("min_min.png");
+        mIconPrint = createMyIcon("min_print.png");
+        mIconZero = createMyIcon("min_zero.png");
+        mIconSave = createMyIcon("min_save.png");
+        mIconSigma = createMyIcon("min_sigma.png");
     }
     private void createMenus(){
         //create menu bar
@@ -86,6 +121,10 @@ public class MyWindow extends JFrame implements ActionListener {
         menuBar.add(helpMenu);
         setJMenuBar(menuBar);
     }
+    public void createGUI(){
+        contentPane.add(createJToolBar(), BorderLayout.NORTH);
+        contentPane.add(createCenterPanel(), BorderLayout.CENTER);
+    }
     public Icon createMyIcon(String nameFile){
         String name = ICON_PATH + nameFile;
         Icon icon = null;
@@ -109,6 +148,40 @@ public class MyWindow extends JFrame implements ActionListener {
     }
     private JToolBar createJToolBar(){
         JToolBar jToolBar = new JToolBar();
+        jToolBar.setFloatable(false);
+
+        jtbSave = createJButtonToolBar("Zapisanie danych", iconSave);
+        jtbPrint = createJButtonToolBar("Drukowanie", iconPrint);
+        jtbExit = createJButtonToolBar("Wyjście z aplikacji", iconExit);
+        jtbAdd = createJButtonToolBar("Dodaj wartość", iconAdd);
+        jtbZero = createJButtonToolBar("Wyzeruj tabele", iconZero);
+        jtbFill = createJButtonToolBar("Wypełnij tabele", iconFill);
+        jtbSigma = createJButtonToolBar("Sumowanie", iconSigma);
+        jtbAvg = createJButtonToolBar("Średnia", iconAvg);
+        jtbMin = createJButtonToolBar("Minimum", iconMin);
+        jtbMax = createJButtonToolBar("Maksimum", iconMax);
+        jtbHelp = createJButtonToolBar("Pomoc", iconHelp);
+        jtbAbout = createJButtonToolBar("O autorze", iconAbout);
+
+        jtbMin.setSize(24,24);
+        jtbMax.setSize(24,24);
+
+        jToolBar.add(Box.createHorizontalStrut(5));
+        jToolBar.add(jtbSave);
+        jToolBar.add(jtbPrint);
+        jToolBar.add(jtbExit);
+        jToolBar.addSeparator();
+        jToolBar.add(jtbAdd);
+        jToolBar.add(jtbZero);
+        jToolBar.add(jtbFill);
+        jToolBar.addSeparator();
+        jToolBar.add(jtbSigma);
+        jToolBar.add(jtbAvg);
+        jToolBar.add(jtbMin);
+        jToolBar.add(jtbMax);
+        jToolBar.addSeparator();
+        jToolBar.add(jtbHelp);
+        jToolBar.add(jtbAbout);
 
         return jToolBar;
     }
