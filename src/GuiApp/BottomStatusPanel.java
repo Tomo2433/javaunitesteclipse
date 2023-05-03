@@ -34,6 +34,7 @@ public class BottomStatusPanel extends JPanel {
         this.add(Box.createHorizontalStrut(10));
         this.add(statusTextField);
     }
+
     public Insets getInsets() {
         return new Insets(5,10,5,10);
     }
