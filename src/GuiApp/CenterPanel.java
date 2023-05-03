@@ -33,18 +33,18 @@ public class CenterPanel extends JPanel implements ActionListener {
 
     CenterPanel() {
         Icons icons = new Icons();
-        createGUI();
+        createGUI(icons);
     }
-    public void createGUI() {
+    public void createGUI(Icons icons) {
         this.setLayout(new BorderLayout());
         parameterPanel = createParametersPanel();
         tableWithButtonsPanel = createTableWithButtonsPanel();
-
+        operationsButtonsPanel = createOperationsButtonsPanel(icons);
         resultPanel = createResultPanel();
 
         this.add(parameterPanel, BorderLayout.NORTH);
-        this.add(tableWithButtonsPanel, BorderLayout.CENTER);
-
+        this.add(tableWithButtonsPanel, BorderLayout.WEST);
+        this.add(operationsButtonsPanel, BorderLayout.EAST);
         this.add(resultPanel, BorderLayout.SOUTH);
     }
     public JPanel createParametersPanel() {
@@ -95,6 +95,7 @@ public class CenterPanel extends JPanel implements ActionListener {
         jPanel.add(columnSlider);
         jPanel.add(colTextField);
 
+
         return jPanel;
     }
     public JPanel createTableWithButtonsPanel() {
@@ -115,9 +116,21 @@ public class CenterPanel extends JPanel implements ActionListener {
 
         return jPanel;
     }
-    public JPanel createOperationsButtonsPanel(){
+    public JPanel createOperationsButtonsPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
+        jbtAdd = createJButton("Dodaj", icons.mIconAdd);
+        jbtZero = createJButton("Wyzeruj", icons.mIconZero);
+        jbtFill = createJButton("Wypełnij", icons.mIconFill);
+        jbtSave = createJButton("Zapisz", icons.mIconSave);
+
+        jPanel.add(jbtAdd);
+        jPanel.add(Box.createVerticalStrut(5));
+        jPanel.add(jbtZero);
+        jPanel.add(Box.createVerticalStrut(5));
+        jPanel.add(jbtFill);
+        jPanel.add(Box.createVerticalStrut(5));
+        jPanel.add(jbtSave);
 
         return jPanel;
     }
@@ -155,6 +168,8 @@ public class CenterPanel extends JPanel implements ActionListener {
     private JButton createJButton(String text, Icon icon){
         JButton jButton = new JButton(text, icon);
         jButton.addActionListener(this);
+        jButton.setMaximumSize(new Dimension(100,23));
+        jButton.setFont(new Font("Arial", Font.BOLD, 11));
         return jButton;
     }
     @Override
