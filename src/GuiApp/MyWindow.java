@@ -122,8 +122,12 @@ public class MyWindow extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
     }
     public void createGUI(){
+        CenterPanel centerPanel = new CenterPanel();
+        BottomStatusPanel bottomStatusPanel = new BottomStatusPanel();
+
         contentPane.add(createJToolBar(), BorderLayout.NORTH);
-        contentPane.add(createCenterPanel(), BorderLayout.CENTER);
+        contentPane.add(centerPanel, BorderLayout.CENTER);
+        contentPane.add(bottomStatusPanel, BorderLayout.SOUTH);
     }
     public Icon createMyIcon(String nameFile){
         String name = ICON_PATH + nameFile;
@@ -191,13 +195,13 @@ public class MyWindow extends JFrame implements ActionListener {
         jButton.addActionListener(this);
         return jButton;
     }
-    private JPanel createCenterPanel(){
-        JPanel jPanel = new JPanel();
-        jPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        jPanel.setBackground(Color.LIGHT_GRAY);
-
-        return jPanel;
-    }
+//    private JPanel createCenterPanel(){
+//        JPanel jPanel = new JPanel();
+//        jPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+//        jPanel.setBackground(Color.LIGHT_GRAY);
+//
+//        return jPanel;
+//    }
 
     private void windowClose(){
         int value = JOptionPane.showOptionDialog(this,
