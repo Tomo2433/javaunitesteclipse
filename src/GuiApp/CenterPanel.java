@@ -10,17 +10,17 @@ import java.awt.event.ActionListener;
 
 public class CenterPanel extends JPanel implements ActionListener {
 
-    private static final int TABLE_ROWS = 5;
-    private static final int TABLE_COLS = 5;
+    protected static final int TABLE_ROWS = 5;
+    protected static final int TABLE_COLS = 5;
     private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel;
     private JTextField numberTextField, rowTextField, colTextField;
-    private JTextArea resultTextArea = new JTextArea();
+    protected JTextArea resultTextArea = new JTextArea();
     private JScrollPane tableScrollPane, textAreaScrollPane;
     private JSlider rowSlider, columnSlider;
     private JLabel numberLabel, rowLabel, colLabel, operationLabel;
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
-    private JTable table;
+    protected JTable table;
     public Object[][] data = {
             {0,0,0,0,0},
             {0,0,0,0,0},

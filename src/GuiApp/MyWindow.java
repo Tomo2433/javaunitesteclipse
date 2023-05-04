@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 
+import static GuiApp.CenterPanel.TABLE_COLS;
+import static GuiApp.CenterPanel.TABLE_ROWS;
+
 public class MyWindow extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
@@ -12,6 +15,8 @@ public class MyWindow extends JFrame implements ActionListener {
     private final int WINDOW_HEIGHT_SIZE = 450;
     private static final String ICON_PATH = "/resources/";
     private JPanel contentPane;
+    private CenterPanel centerPanel;
+    private BottomStatusPanel bottomStatusPanel;
 
 
     //menu variables definition
@@ -82,8 +87,8 @@ public class MyWindow extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
     }
     public void createGUI(Icons icons){
-        CenterPanel centerPanel = new CenterPanel();
-        BottomStatusPanel bottomStatusPanel = new BottomStatusPanel();
+        centerPanel = new CenterPanel();
+        bottomStatusPanel = new BottomStatusPanel();
 
         contentPane.add(createJToolBar(icons), BorderLayout.NORTH);
         contentPane.add(centerPanel, BorderLayout.CENTER);
@@ -146,6 +151,9 @@ public class MyWindow extends JFrame implements ActionListener {
         jToolBar.addSeparator();
         jToolBar.add(jtbHelp);
         jToolBar.add(jtbAbout);
+
+        jtbSigma.addActionListener(new SumListener(centerPanel.table,
+                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
 
         return jToolBar;
     }
