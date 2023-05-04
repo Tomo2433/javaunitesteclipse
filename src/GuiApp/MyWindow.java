@@ -152,6 +152,14 @@ public class MyWindow extends JFrame implements ActionListener {
         jToolBar.add(jtbHelp);
         jToolBar.add(jtbAbout);
 
+        jtbAdd.addActionListener(new AddValueListener(centerPanel.numberTextField,
+                centerPanel.rowSlider, centerPanel.columnSlider,
+                centerPanel.table, centerPanel.resultTextArea));
+        jtbZero.addActionListener(new ZeroTableValuesListener(centerPanel.table,
+                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea));
+        jtbFill.addActionListener(new FillTableListener(centerPanel.table,
+                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea,
+                centerPanel.numberTextField));
         jtbSave.addActionListener(new SaveListener(centerPanel.table,
                 centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
         jtbSigma.addActionListener(new SumListener(centerPanel.table,

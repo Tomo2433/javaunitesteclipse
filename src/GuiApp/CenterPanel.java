@@ -14,10 +14,10 @@ public class CenterPanel extends JPanel implements ActionListener {
     protected static final int TABLE_COLS = 5;
     private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel;
-    private JTextField numberTextField, rowTextField, colTextField;
+    protected JTextField numberTextField, rowTextField, colTextField;
     protected JTextArea resultTextArea = new JTextArea();
     private JScrollPane tableScrollPane, textAreaScrollPane;
-    private JSlider rowSlider, columnSlider;
+    protected JSlider rowSlider, columnSlider;
     private JLabel numberLabel, rowLabel, colLabel, operationLabel;
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
     protected JTable table;
@@ -31,6 +31,7 @@ public class CenterPanel extends JPanel implements ActionListener {
     private Object[] tableColumnNames = {"1", "2", "3", "4", "5"};
     private TitledBorder titledBorder;
     private Border border;
+    private JComboBox jComboBox;
 
 
     CenterPanel() {
@@ -158,9 +159,37 @@ public class CenterPanel extends JPanel implements ActionListener {
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         operationLabel = new JLabel("Obliczenia");
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
+
         jPanel.add(operationLabel);
-        jPanel.add(new JComboBox<>(new String[]{"Wybierz operację", "Sumowanie",
-                "Średnia", "Min i Max"}));
+        jComboBox = new JComboBox<>(new String[]{"Wybierz operację",
+                "Sumowanie", "Średnia", "Min i Max"});
+        jPanel.add(jComboBox);
+        jbtCount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = jComboBox.getSelectedIndex();
+                switch (index) {
+                    case 1:
+                        new SumListener(table, resultTextArea,
+                                TABLE_ROWS, TABLE_COLS);
+                        break;
+                    case 2:
+                        new AvgListener(table, resultTextArea,
+                                TABLE_ROWS, TABLE_COLS);
+                        break;
+                    case 3:
+                        new MinListener(table, resultTextArea,
+                                TABLE_ROWS, TABLE_COLS);
+                        new MaxListener(table, resultTextArea,
+                                TABLE_ROWS, TABLE_COLS);
+                        break;
+                    default:
+                        resultTextArea.append("Wybierz operacje! \n");
+                        break;
+                }
+            }
+        });
+
         jPanel.add(jbtCount);
 
         return jPanel;
