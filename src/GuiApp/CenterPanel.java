@@ -137,6 +137,8 @@ public class CenterPanel extends JPanel implements ActionListener {
         jbtZero.addActionListener(new ZeroTableValuesListener(table, TABLE_ROWS,
                 TABLE_COLS, resultTextArea));
         jbtFill = createJButton("Wypełnij", icons.mIconFill);
+        jbtFill.addActionListener(new FillTableListener(table, TABLE_ROWS,
+                TABLE_COLS, resultTextArea, numberTextField));
         jbtSave = createJButton("Zapisz", icons.mIconSave);
 
         jPanel.add(jbtAdd);
