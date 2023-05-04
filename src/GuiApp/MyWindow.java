@@ -154,6 +154,8 @@ public class MyWindow extends JFrame implements ActionListener {
 
         jtbSigma.addActionListener(new SumListener(centerPanel.table,
                 centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        jtbAvg.addActionListener(new AvgListener(centerPanel.table,
+                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
 
         return jToolBar;
     }
