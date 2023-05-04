@@ -152,9 +152,15 @@ public class MyWindow extends JFrame implements ActionListener {
         jToolBar.add(jtbHelp);
         jToolBar.add(jtbAbout);
 
+        jtbSave.addActionListener(new SaveListener(centerPanel.table,
+                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
         jtbSigma.addActionListener(new SumListener(centerPanel.table,
                 centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
         jtbAvg.addActionListener(new AvgListener(centerPanel.table,
+                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        jtbMin.addActionListener(new MinListener(centerPanel.table,
+                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        jtbMax.addActionListener(new MaxListener(centerPanel.table,
                 centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
 
         return jToolBar;

@@ -9,13 +9,15 @@ import java.io.PrintWriter;
 
 public class SaveListener implements ActionListener {
     private JTable table;
+    private JTextArea textArea;
     private File file, folder;
     private PrintWriter printWriter;
     private int rows, cols;
-    SaveListener(JTable table, int rows, int cols){
+    SaveListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.rows = rows;
         this.cols = cols;
+        this.textArea = textArea;
     }
     public void actionPerformed(ActionEvent e){
         file = new File("tabela.txt");
@@ -31,6 +33,7 @@ public class SaveListener implements ActionListener {
                 printWriter.println("");
             }
             printWriter.close();
+            textArea.append("Zapisano wartości tabeli do pliku tabela.txt\n");
         }catch (FileNotFoundException fnfe){
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame,
