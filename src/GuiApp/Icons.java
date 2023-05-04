@@ -41,7 +41,7 @@ public class Icons {
         iconSave = createMyIcon("save.png");
         iconSigma = createMyIcon("sigma.png");
         //create 16x16px icons for menubar
-        mIconExit = createMyIcon("min_close.png");
+        mIconExit = createMyIcon("min_exit.png");
         mIconAbout = createMyIcon("min_about.png");
         mIconHelp = createMyIcon("min_help.png");
         mIconAdd = createMyIcon("min_add.png");

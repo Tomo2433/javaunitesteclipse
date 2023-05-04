@@ -3,6 +3,7 @@ package GuiApp;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,11 +12,11 @@ public class CenterPanel extends JPanel implements ActionListener {
 
     private static final int TABLE_ROWS = 5;
     private static final int TABLE_COLS = 5;
-    private JPanel parameterPanel, tableWithButtonsPanel, operationsPanel,
+    private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel;
     private JTextField numberTextField, rowTextField, colTextField;
-    private JTextArea resultTextArea;
-    private JScrollPane scrollPane;
+    private JTextArea resultTextArea = new JTextArea();
+    private JScrollPane tableScrollPane, textAreaScrollPane;
     private JSlider rowSlider, columnSlider;
     private JLabel numberLabel, rowLabel, colLabel, operationLabel;
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
@@ -31,26 +32,28 @@ public class CenterPanel extends JPanel implements ActionListener {
     private TitledBorder titledBorder;
     private Border border;
 
+
     CenterPanel() {
         Icons icons = new Icons();
+
         createGUI(icons);
     }
     public void createGUI(Icons icons) {
         this.setLayout(new BorderLayout());
         parameterPanel = createParametersPanel();
-        tableWithButtonsPanel = createTableWithButtonsPanel();
+        tablePanel = createTablePanel();
         operationsButtonsPanel = createOperationsButtonsPanel(icons);
         resultPanel = createResultPanel();
 
         this.add(parameterPanel, BorderLayout.NORTH);
-        this.add(tableWithButtonsPanel, BorderLayout.WEST);
+        this.add(tablePanel, BorderLayout.WEST);
         this.add(operationsButtonsPanel, BorderLayout.EAST);
         this.add(resultPanel, BorderLayout.SOUTH);
     }
     public JPanel createParametersPanel() {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout());
-        //jPanel.setPreferredSize(new Dimension(350, 30));
+        jPanel.setPreferredSize(new Dimension(350, 35));
 
         numberTextField = new JTextField("0");
         numberTextField.setPreferredSize(new Dimension(50,20));
@@ -98,19 +101,26 @@ public class CenterPanel extends JPanel implements ActionListener {
 
         return jPanel;
     }
-    public JPanel createTableWithButtonsPanel() {
+    public JPanel createTablePanel() {
         JPanel jPanel = new JPanel();
-        scrollPane = new JScrollPane();
+        tableScrollPane = new JScrollPane();
         jPanel.setLayout(new BorderLayout());
         operationsPanel = createOperationPanel(new Icons());
 
         table = new JTable(data, tableColumnNames);
         table.setEnabled(false);
 
-        scrollPane.setPreferredSize(new Dimension(500,100));
-        scrollPane.setViewportView(table);
+        tableScrollPane.setPreferredSize(new Dimension(500,100));
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+        table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+        tableScrollPane.setViewportView(table);
 
-        jPanel.add(scrollPane, BorderLayout.WEST);
+        jPanel.add(tableScrollPane, BorderLayout.WEST);
 
         jPanel.add(operationsPanel, BorderLayout.SOUTH);
 
@@ -119,8 +129,13 @@ public class CenterPanel extends JPanel implements ActionListener {
     public JPanel createOperationsButtonsPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
+
         jbtAdd = createJButton("Dodaj", icons.mIconAdd);
+        jbtAdd.addActionListener(new AddValueListener(numberTextField,
+                rowSlider,columnSlider, table, resultTextArea));
         jbtZero = createJButton("Wyzeruj", icons.mIconZero);
+        jbtZero.addActionListener(new ZeroTableValuesListener(table, TABLE_ROWS,
+                TABLE_COLS, resultTextArea));
         jbtFill = createJButton("Wypełnij", icons.mIconFill);
         jbtSave = createJButton("Zapisz", icons.mIconSave);
 
@@ -137,10 +152,11 @@ public class CenterPanel extends JPanel implements ActionListener {
     public JPanel createOperationPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        operationLabel = new JLabel("Wybierz operacje");
+        operationLabel = new JLabel("Obliczenia");
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
         jPanel.add(operationLabel);
-        jPanel.add(new JComboBox<>(new String[]{"Opcja 1", "Opcja 2", "Opcja 3"}));
+        jPanel.add(new JComboBox<>(new String[]{"Wybierz operację", "Sumowanie",
+                "Średnia", "Min i Max"}));
         jPanel.add(jbtCount);
 
         return jPanel;
@@ -155,13 +171,12 @@ public class CenterPanel extends JPanel implements ActionListener {
         jPanel.setBorder(titledBorder);
         jPanel.setLayout(new BorderLayout());
 
-        resultTextArea = new JTextArea();
-        resultTextArea.setPreferredSize(new Dimension(350,100));
-        resultTextArea.setLineWrap(true);
 
+        resultTextArea.setLineWrap(true);
         resultTextArea.setEditable(false);
-        resultTextArea.append("Start aplikacji\n");
-        jPanel.add(new JScrollPane(resultTextArea),BorderLayout.CENTER);
+        textAreaScrollPane = new JScrollPane(resultTextArea);
+        textAreaScrollPane.setPreferredSize(new Dimension(350,100));
+        jPanel.add(textAreaScrollPane,BorderLayout.CENTER);
 
         return jPanel;
     }
