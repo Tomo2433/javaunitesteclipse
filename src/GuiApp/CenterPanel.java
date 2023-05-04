@@ -140,6 +140,7 @@ public class CenterPanel extends JPanel implements ActionListener {
         jbtFill.addActionListener(new FillTableListener(table, TABLE_ROWS,
                 TABLE_COLS, resultTextArea, numberTextField));
         jbtSave = createJButton("Zapisz", icons.mIconSave);
+        jbtSave.addActionListener(new SaveListener(table, TABLE_ROWS, TABLE_COLS));
 
         jPanel.add(jbtAdd);
         jPanel.add(Box.createVerticalStrut(5));
