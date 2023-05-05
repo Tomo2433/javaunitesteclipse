@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ public class ZeroTableValuesListener implements ActionListener {
     private JTable table;
     private JTextArea textArea;
     private int rows, cols;
-    ZeroTableValuesListener(JTable table, int rows, int cols, JTextArea textArea){
+    public ZeroTableValuesListener(JTable table, int rows, int cols, JTextArea textArea){
         this.table = table;
         this.rows = rows;
         this.cols = cols;

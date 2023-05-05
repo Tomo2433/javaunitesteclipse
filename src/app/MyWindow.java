@@ -1,12 +1,14 @@
-package GuiApp;
+package app;
+
+import app.listeners.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 
-import static GuiApp.CenterPanel.TABLE_COLS;
-import static GuiApp.CenterPanel.TABLE_ROWS;
+import static app.CenterPanel.TABLE_COLS;
+import static app.CenterPanel.TABLE_ROWS;
 
 public class MyWindow extends JFrame implements ActionListener {
 

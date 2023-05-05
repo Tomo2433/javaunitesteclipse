@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +10,8 @@ public class FillTableListener implements ActionListener {
     private JTextArea textArea;
     private JTextField textField;
     private int rows, cols;
-    FillTableListener(JTable table, int rows, int cols,
-                      JTextArea textArea, JTextField textField){
+    public FillTableListener(JTable table, int rows, int cols,
+                             JTextArea textArea, JTextField textField){
         this.table = table;
         this.rows = rows;
         this.cols = cols;

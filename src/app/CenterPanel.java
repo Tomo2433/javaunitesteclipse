@@ -1,4 +1,6 @@
-package GuiApp;
+package app;
+
+import app.listeners.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;

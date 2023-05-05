@@ -1,4 +1,4 @@
-package GuiApp;
+package app;
 
 import javax.swing.*;
 import java.net.URL;

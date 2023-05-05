@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ public class MinAndMaxListener implements ActionListener {
     private int value;
 
 
-    MinAndMaxListener(JTable table, JTextArea textArea, int rows, int cols){
+    public MinAndMaxListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.textArea = textArea;
         this.rows = rows;

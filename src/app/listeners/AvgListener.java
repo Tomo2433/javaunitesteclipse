@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ public class AvgListener implements ActionListener {
     private int sum;
     private float value;
 
-    AvgListener(JTable table, JTextArea textArea, int rows, int cols){
+    public AvgListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.textArea = textArea;
         this.rows = rows;

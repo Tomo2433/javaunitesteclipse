@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ public class SumListener implements ActionListener {
     private int rows, cols;
     private int sum;
 
-    SumListener(JTable table, JTextArea textArea, int rows, int cols){
+    public SumListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.textArea = textArea;
         this.rows = rows;

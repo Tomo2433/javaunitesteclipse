@@ -1,4 +1,4 @@
-package GuiApp;
+package app.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ public class SaveListener implements ActionListener {
     private File file, folder;
     private PrintWriter printWriter;
     private int rows, cols;
-    SaveListener(JTable table, JTextArea textArea, int rows, int cols){
+    public SaveListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.rows = rows;
         this.cols = cols;
