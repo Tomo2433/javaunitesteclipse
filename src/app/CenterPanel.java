@@ -112,7 +112,7 @@ public class CenterPanel extends JPanel {
 
         table = new JTable(data, tableColumnNames);
         table.setEnabled(false);
-
+        table.getTableHeader().setReorderingAllowed(false);
         tableScrollPane.setPreferredSize(new Dimension(500,100));
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);

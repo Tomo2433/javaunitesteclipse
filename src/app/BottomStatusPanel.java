@@ -6,7 +6,7 @@ import java.awt.*;
 public class BottomStatusPanel extends JPanel {
 
     private JLabel infoLabel, statusLabel;
-    private static JTextField infoTextField, statusTextField;
+    protected JTextField infoTextField, statusTextField;
     BottomStatusPanel(){
         createGUI();
     }
@@ -21,10 +21,12 @@ public class BottomStatusPanel extends JPanel {
         infoTextField.setMinimumSize(new Dimension(200,20));
         infoTextField.setBackground(new Color(227, 227, 227));
         infoTextField.putClientProperty("JComponent.sizeVariant","small");
+        infoTextField.setEditable(false);
         statusTextField = new JTextField("ON");
         statusTextField.setMinimumSize(new Dimension(180, 20));
         statusTextField.setBackground(new Color(227, 227, 227));
         statusTextField.putClientProperty("JComponent.sizeVariant", "small");
+        statusTextField.setEditable(false);
 
         this.add(infoLabel);
         this.add(Box.createHorizontalStrut(10));
