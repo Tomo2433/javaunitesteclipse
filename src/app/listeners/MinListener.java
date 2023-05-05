@@ -11,7 +11,7 @@ public class MinListener implements ActionListener {
     private int value;
 
 
-    MinListener(JTable table, JTextArea textArea, int rows, int cols){
+    public MinListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.textArea = textArea;
         this.rows = rows;

@@ -11,7 +11,7 @@ public class MaxListener implements ActionListener {
     private int value;
 
 
-    MaxListener(JTable table, JTextArea textArea, int rows, int cols){
+    public MaxListener(JTable table, JTextArea textArea, int rows, int cols){
         this.table = table;
         this.textArea = textArea;
         this.rows = rows;

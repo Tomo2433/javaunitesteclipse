@@ -19,11 +19,12 @@ public class MyWindow extends JFrame implements ActionListener {
     private JPanel contentPane;
     private CenterPanel centerPanel;
     private BottomStatusPanel bottomStatusPanel;
+    AboutWindow aboutWindow = null;
 
 
     //menu variables definition
     private JMenu fileMenu, editMenu, viewMenu, calculationsMenu, helpMenu;
-    private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem;
+    private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem, printMenuItem;
 
     //toolbar variables definition
     JButton jtbSave, jtbPrint, jtbExit, jtbAdd, jtbZero,
@@ -76,8 +77,11 @@ public class MyWindow extends JFrame implements ActionListener {
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
         helpMenuItem = createJMenuItem("Kontekst pomocy",icons.mIconHelp,
                 KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
+        printMenuItem = createJMenuItem("Drukuj",icons.mIconPrint,
+                KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
 
         fileMenu.add(exitMenuItem);
+        fileMenu.add(printMenuItem);
         helpMenu.add(helpMenuItem);
         helpMenu.add(aboutMenuItem);
 
@@ -205,6 +209,12 @@ public class MyWindow extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == jtbAbout || e.getSource() == aboutMenuItem) {
+            if(aboutWindow != null) aboutWindow.setVisible(true);
+            else {
+                aboutWindow = new AboutWindow();
+                aboutWindow.setVisible(true);
+            }
+        }
     }
 }
