@@ -159,37 +159,44 @@ public class CenterPanel extends JPanel implements ActionListener {
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         operationLabel = new JLabel("Obliczenia");
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
+        jbtCount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resultTextArea.append("Wybierz operacje! \n");
+            }
+        });
 
         jPanel.add(operationLabel);
         jComboBox = new JComboBox<>(new String[]{"Wybierz operację",
                 "Sumowanie", "Średnia", "Min i Max"});
-        jPanel.add(jComboBox);
-        jbtCount.addActionListener(new ActionListener() {
+        jComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = jComboBox.getSelectedIndex();
-                switch (index) {
-                    case 1:
-                        new SumListener(table, resultTextArea,
-                                TABLE_ROWS, TABLE_COLS);
-                        break;
-                    case 2:
-                        new AvgListener(table, resultTextArea,
-                                TABLE_ROWS, TABLE_COLS);
-                        break;
-                    case 3:
-                        new MinListener(table, resultTextArea,
-                                TABLE_ROWS, TABLE_COLS);
-                        new MaxListener(table, resultTextArea,
-                                TABLE_ROWS, TABLE_COLS);
-                        break;
-                    default:
-                        resultTextArea.append("Wybierz operacje! \n");
-                        break;
+                for(ActionListener l : jbtCount.getActionListeners())
+                    jbtCount.removeActionListener(l);
+
+                String selectedOption = (String) jComboBox.getSelectedItem();
+                if (selectedOption.equals("Sumowanie")){
+                    jbtCount.addActionListener(new SumListener(table,
+                            resultTextArea, TABLE_ROWS, TABLE_COLS));
+                } else if (selectedOption.equals("Średnia")) {
+                    jbtCount.addActionListener(new AvgListener(table,
+                            resultTextArea, TABLE_ROWS, TABLE_COLS));
+                } else if (selectedOption.equals("Min i Max")) {
+                    jbtCount.addActionListener(new MinAndMaxListener(table,
+                            resultTextArea, TABLE_ROWS, TABLE_COLS));
+                } else {
+                    jbtCount.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            resultTextArea.append("Wybierz operacje! \n");
+                        }
+                    });
                 }
             }
         });
 
+        jPanel.add(jComboBox);
         jPanel.add(jbtCount);
 
         return jPanel;
