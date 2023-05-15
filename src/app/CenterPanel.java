@@ -36,9 +36,8 @@ public class CenterPanel extends JPanel {
     private JComboBox jComboBox;
 
 
-    CenterPanel() {
+    public CenterPanel() {
         Icons icons = new Icons();
-
         createGUI(icons);
     }
     public void createGUI(Icons icons) {
