@@ -224,7 +224,7 @@ public class CenterPanel extends JPanel {
     private JButton createJButton(String text, Icon icon){
         JButton jButton = new JButton(text, icon);
         jButton.setMaximumSize(new Dimension(100,23));
-        jButton.setFont(new Font("Arial", Font.BOLD, 11));
+        jButton.setFont(new Font("Arial", Font.BOLD, 10));
         return jButton;
     }
 

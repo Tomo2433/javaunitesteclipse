@@ -27,7 +27,8 @@ public class MyWindow extends JFrame implements ActionListener {
 
     //menu variables definition
     private JMenu fileMenu, editMenu, viewMenu, calculationsMenu, helpMenu;
-    private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem, printMenuItem;
+    private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem, printMenuItem,
+            sigmaMenuItem, avgMenuItem, minMenuItem, maxMenuItem;
     private JCheckBoxMenuItem viewStatusBarMenuItem, viewJToolBarMenuItem;
 
     //toolbar variables definition
@@ -39,6 +40,7 @@ public class MyWindow extends JFrame implements ActionListener {
     public MyWindow(){
         setTitle("MyWindow v1.0.1");
         setSize(WINDOW_WIDTH_SIZE,WINDOW_HEIGHT_SIZE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/author_logo.png")));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -85,16 +87,29 @@ public class MyWindow extends JFrame implements ActionListener {
                 KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
         printMenuItem = createJMenuItem("Drukuj",icons.mIconPrint,
                 KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
+        sigmaMenuItem = createJMenuItem("Sumowanie", icons.mIconSigma,
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+        avgMenuItem = createJMenuItem("Średnia", icons.mIconAvg,
+                KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
+        minMenuItem = createJMenuItem("Minimum", icons.mIconMin,
+                KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
+        maxMenuItem = createJMenuItem("Maksimum", icons.mIconMax,
+                KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
 
         viewStatusBarMenuItem = createJCheckBoxMenuItem(
                 "Ukryj pasek statusu",false);
         viewJToolBarMenuItem = createJCheckBoxMenuItem(
                 "Ukryj pasek narzędziowy",false);
 
+
         fileMenu.add(exitMenuItem);
         fileMenu.add(printMenuItem);
         viewMenu.add(viewStatusBarMenuItem);
         viewMenu.add(viewJToolBarMenuItem);
+        calculationsMenu.add(sigmaMenuItem);
+        calculationsMenu.add(avgMenuItem);
+        calculationsMenu.add(minMenuItem);
+        calculationsMenu.add(maxMenuItem);
         helpMenu.add(helpMenuItem);
         helpMenu.add(aboutMenuItem);
 
@@ -274,6 +289,19 @@ public class MyWindow extends JFrame implements ActionListener {
         } else if ((e.getSource() == printMenuItem) ||
                 (e.getSource() == jtbPrint)) {
             printListForm();
+        } else if (e.getSource() == sigmaMenuItem) {
+            sigmaMenuItem.addActionListener(new SumListener(centerPanel.table,
+                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        } else if (e.getSource() == avgMenuItem) {
+            avgMenuItem.addActionListener(new AvgListener(centerPanel.table,
+                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        } else if (e.getSource() == minMenuItem) {
+            minMenuItem.addActionListener(new MinListener(centerPanel.table,
+                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+        } else if (e.getSource() == maxMenuItem) {
+            maxMenuItem.addActionListener(new MaxListener(centerPanel.table,
+                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
         }
+
     }
 }

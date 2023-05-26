@@ -15,6 +15,7 @@ public class HelpWindow extends JDialog {
 
     public HelpWindow(){
         this.setTitle("Pomoc - My Window");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/author_logo.png")));
         this.setModal(false);
         this.setResizable(true);
         this.setSize(800, 600);
