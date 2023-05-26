@@ -212,25 +212,6 @@ public class MyWindow extends JFrame{
         jToolBar.add(jtbHelp);
         jToolBar.add(jtbAbout);
 
-//        jtbAdd.addActionListener(new AddValueListener(centerPanel.numberTextField,
-//                centerPanel.rowSlider, centerPanel.columnSlider,
-//                centerPanel.table, centerPanel.resultTextArea));
-//        jtbZero.addActionListener(new ZeroTableValuesListener(centerPanel.table,
-//                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea));
-//        jtbFill.addActionListener(new FillTableListener(centerPanel.table,
-//                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea,
-//                centerPanel.numberTextField));
-//        jtbSave.addActionListener(new SaveListener(centerPanel.table,
-//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        jtbSigma.addActionListener(new SumListener(centerPanel.table,
-//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        jtbAvg.addActionListener(new AvgListener(centerPanel.table,
-//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        jtbMin.addActionListener(new MinListener(centerPanel.table,
-//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        jtbMax.addActionListener(new MaxListener(centerPanel.table,
-//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-
         return jToolBar;
     }
     private JButton createJButtonToolBar(String tooltip, Icon icon) {
@@ -255,8 +236,7 @@ public class MyWindow extends JFrame{
             bottomStatusPanel.getInfoTextField().setText("Aplikacja kontynuuje");
         }
     }
-
-
+    
     public JButton getJtbSave() {
         return jtbSave;
     }
@@ -378,48 +358,4 @@ public class MyWindow extends JFrame{
         this.helpWindow = helpWindow;
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() == jtbAbout || e.getSource() == aboutMenuItem) {
-//            if(aboutWindow != null) aboutWindow.setVisible(true);
-//            else {
-//                aboutWindow = new AboutWindow();
-//                aboutWindow.setVisible(true);
-//            }
-//        } else if (e.getSource() == viewStatusBarMenuItem) {
-//            boolean visible = viewStatusBarMenuItem.getState();
-//            if (visible) bottomStatusPanel.setVisible(false);
-//            else bottomStatusPanel.setVisible(true);
-//        } else if (e.getSource() == viewJToolBarMenuItem) {
-//            boolean visible = viewJToolBarMenuItem.getState();
-//            if (visible) jToolBar.setVisible(false);
-//            else jToolBar.setVisible(true);
-//        } else if (e.getSource() == jtbHelp || e.getSource() == helpMenuItem) {
-//            if(helpWindow != null) helpWindow.setVisible(true);
-//            else {
-//                helpWindow = new HelpWindow();
-//                helpWindow.setVisible(true);
-//            }
-//        } else if((e.getSource() == exitMenuItem) ||
-//                (e.getSource() == jtbExit)) {
-//            bottomStatusPanel.getInfoTextField().setText("Zamykanie aplikacji");
-//            windowClose();
-//        } else if ((e.getSource() == printMenuItem) ||
-//                (e.getSource() == jtbPrint)) {
-//            printListForm();
-//        } else if (e.getSource() == sigmaMenuItem) {
-//            sigmaMenuItem.addActionListener(new SumListener(centerPanel.table,
-//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        } else if (e.getSource() == avgMenuItem) {
-//            avgMenuItem.addActionListener(new AvgListener(centerPanel.table,
-//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        } else if (e.getSource() == minMenuItem) {
-//            minMenuItem.addActionListener(new MinListener(centerPanel.table,
-//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-//        } else if (e.getSource() == maxMenuItem) {
-//            maxMenuItem.addActionListener(new MaxListener(centerPanel.table,
-//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-////        }
-//
-//    }
 }
