@@ -1,4 +1,4 @@
-package app;
+package app.view;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -32,7 +32,7 @@ public class HelpWindow extends JDialog {
         jEditorPane = new JEditorPane();
         jEditorPane.setEditable(false);
 
-        urlHelpPage = app.HelpWindow.class.getResource("/help/index.html");
+        urlHelpPage = HelpWindow.class.getResource("/help/index.html");
         setUrlPage();
         jEditorPane.addHyperlinkListener(new HyperlinkListener() {
             @Override

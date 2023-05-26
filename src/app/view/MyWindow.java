@@ -1,4 +1,4 @@
-package app;
+package app.view;
 
 import app.listeners.*;
 
@@ -9,10 +9,10 @@ import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
 import java.net.URL;
 
-import static app.CenterPanel.TABLE_COLS;
-import static app.CenterPanel.TABLE_ROWS;
+import static app.view.CenterPanel.TABLE_COLS;
+import static app.view.CenterPanel.TABLE_ROWS;
 
-public class MyWindow extends JFrame implements ActionListener {
+public class MyWindow extends JFrame{
 
     private static final long serialVersionUID = 1L;
     private final int WINDOW_WIDTH_SIZE = 650;
@@ -28,7 +28,7 @@ public class MyWindow extends JFrame implements ActionListener {
     //menu variables definition
     private JMenu fileMenu, editMenu, viewMenu, calculationsMenu, helpMenu;
     private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem, printMenuItem,
-            sigmaMenuItem, avgMenuItem, minMenuItem, maxMenuItem;
+            sigmaMenuItem, avgMenuItem, minMenuItem, maxMenuItem, saveMenuItem;
     private JCheckBoxMenuItem viewStatusBarMenuItem, viewJToolBarMenuItem;
 
     //toolbar variables definition
@@ -46,7 +46,7 @@ public class MyWindow extends JFrame implements ActionListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                bottomStatusPanel.infoTextField.setText("Zamykanie aplikacji");
+                bottomStatusPanel.getInfoTextField().setText("Zamykanie aplikacji");
                 windowClose();
             }
         });
@@ -79,6 +79,8 @@ public class MyWindow extends JFrame implements ActionListener {
         calculationsMenu = createJMenu("Obliczenia", KeyEvent.VK_O);
         helpMenu = createJMenu("Pomoc", KeyEvent.VK_I);
         //create menu item
+        saveMenuItem = createJMenuItem("Zapisz",icons.mIconSave,
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
         exitMenuItem = createJMenuItem("Zamknij",icons.mIconExit,
                 KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
         aboutMenuItem = createJMenuItem("O autorze",icons.mIconAbout,
@@ -88,7 +90,7 @@ public class MyWindow extends JFrame implements ActionListener {
         printMenuItem = createJMenuItem("Drukuj",icons.mIconPrint,
                 KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.ALT_MASK));
         sigmaMenuItem = createJMenuItem("Sumowanie", icons.mIconSigma,
-                KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+                KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
         avgMenuItem = createJMenuItem("Średnia", icons.mIconAvg,
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
         minMenuItem = createJMenuItem("Minimum", icons.mIconMin,
@@ -102,8 +104,9 @@ public class MyWindow extends JFrame implements ActionListener {
                 "Ukryj pasek narzędziowy",false);
 
 
-        fileMenu.add(exitMenuItem);
+        fileMenu.add(saveMenuItem);
         fileMenu.add(printMenuItem);
+        fileMenu.add(exitMenuItem);
         viewMenu.add(viewStatusBarMenuItem);
         viewMenu.add(viewJToolBarMenuItem);
         calculationsMenu.add(sigmaMenuItem);
@@ -136,10 +139,10 @@ public class MyWindow extends JFrame implements ActionListener {
             job.pageDialog(pf);
             if(job.printDialog()) {
                 job.print();	// Jesli uzytkownik wybral ok drukujemy panel
-                bottomStatusPanel.infoTextField.setText("Wydrukowanie listy");
+                bottomStatusPanel.getInfoTextField().setText("Wydrukowanie listy");
             }
         } catch(Exception ex) {
-            bottomStatusPanel.infoTextField.setText("Błąd drukowania");
+            bottomStatusPanel.getStatusTextField().setText("Błąd drukowania");
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame,
                     "Nastąpił błąd drukowania!" );
@@ -163,12 +166,12 @@ public class MyWindow extends JFrame implements ActionListener {
             jMenuItem = new JMenuItem(name, icon);
         else jMenuItem = new JMenuItem(name);
         jMenuItem.setAccelerator(key);
-        jMenuItem.addActionListener(this);
+        //jMenuItem.addActionListener(this);
         return jMenuItem;
     }
     public JCheckBoxMenuItem createJCheckBoxMenuItem(String name, boolean enable){
         JCheckBoxMenuItem jCheckBoxMenuItem = new JCheckBoxMenuItem(name, enable);
-        jCheckBoxMenuItem.addActionListener(this);
+       // jCheckBoxMenuItem.addActionListener(this);
         jCheckBoxMenuItem.setEnabled(true);
         return jCheckBoxMenuItem;
     }
@@ -209,42 +212,34 @@ public class MyWindow extends JFrame implements ActionListener {
         jToolBar.add(jtbHelp);
         jToolBar.add(jtbAbout);
 
-        jtbAdd.addActionListener(new AddValueListener(centerPanel.numberTextField,
-                centerPanel.rowSlider, centerPanel.columnSlider,
-                centerPanel.table, centerPanel.resultTextArea));
-        jtbZero.addActionListener(new ZeroTableValuesListener(centerPanel.table,
-                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea));
-        jtbFill.addActionListener(new FillTableListener(centerPanel.table,
-                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea,
-                centerPanel.numberTextField));
-        jtbSave.addActionListener(new SaveListener(centerPanel.table,
-                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        jtbSigma.addActionListener(new SumListener(centerPanel.table,
-                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        jtbAvg.addActionListener(new AvgListener(centerPanel.table,
-                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        jtbMin.addActionListener(new MinListener(centerPanel.table,
-                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        jtbMax.addActionListener(new MaxListener(centerPanel.table,
-                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        jtbAdd.addActionListener(new AddValueListener(centerPanel.numberTextField,
+//                centerPanel.rowSlider, centerPanel.columnSlider,
+//                centerPanel.table, centerPanel.resultTextArea));
+//        jtbZero.addActionListener(new ZeroTableValuesListener(centerPanel.table,
+//                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea));
+//        jtbFill.addActionListener(new FillTableListener(centerPanel.table,
+//                TABLE_ROWS, TABLE_COLS, centerPanel.resultTextArea,
+//                centerPanel.numberTextField));
+//        jtbSave.addActionListener(new SaveListener(centerPanel.table,
+//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        jtbSigma.addActionListener(new SumListener(centerPanel.table,
+//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        jtbAvg.addActionListener(new AvgListener(centerPanel.table,
+//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        jtbMin.addActionListener(new MinListener(centerPanel.table,
+//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        jtbMax.addActionListener(new MaxListener(centerPanel.table,
+//                centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
 
         return jToolBar;
     }
     private JButton createJButtonToolBar(String tooltip, Icon icon) {
         JButton jButton = new JButton("", icon);
         jButton.setToolTipText(tooltip);
-        jButton.addActionListener(this);
+        //jButton.addActionListener(this);
         return jButton;
     }
-//    private JPanel createCenterPanel(){
-//        JPanel jPanel = new JPanel();
-//        jPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-//        jPanel.setBackground(Color.LIGHT_GRAY);
-//
-//        return jPanel;
-//    }
-
-    private void windowClose(){
+    public void windowClose(){
         int value = JOptionPane.showOptionDialog(this,
                 "Czy chcesz zamknąć aplikacje?",
                 "UWAGA",
@@ -257,51 +252,174 @@ public class MyWindow extends JFrame implements ActionListener {
             dispose();
             System.exit(0);
         } else {
-            bottomStatusPanel.infoTextField.setText("Aplikacja kontynuuje");
+            bottomStatusPanel.getInfoTextField().setText("Aplikacja kontynuuje");
         }
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jtbAbout || e.getSource() == aboutMenuItem) {
-            if(aboutWindow != null) aboutWindow.setVisible(true);
-            else {
-                aboutWindow = new AboutWindow();
-                aboutWindow.setVisible(true);
-            }
-        } else if (e.getSource() == viewStatusBarMenuItem) {
-            boolean visible = viewStatusBarMenuItem.getState();
-            if (visible) bottomStatusPanel.setVisible(false);
-            else bottomStatusPanel.setVisible(true);
-        } else if (e.getSource() == viewJToolBarMenuItem) {
-            boolean visible = viewJToolBarMenuItem.getState();
-            if (visible) jToolBar.setVisible(false);
-            else jToolBar.setVisible(true);
-        } else if (e.getSource() == jtbHelp || e.getSource() == helpMenuItem) {
-            if(helpWindow != null) helpWindow.setVisible(true);
-            else {
-                helpWindow = new HelpWindow();
-                helpWindow.setVisible(true);
-            }
-        } else if((e.getSource() == exitMenuItem) ||
-                (e.getSource() == jtbExit)) {
-            bottomStatusPanel.infoTextField.setText("Zamykanie aplikacji");
-            windowClose();
-        } else if ((e.getSource() == printMenuItem) ||
-                (e.getSource() == jtbPrint)) {
-            printListForm();
-        } else if (e.getSource() == sigmaMenuItem) {
-            sigmaMenuItem.addActionListener(new SumListener(centerPanel.table,
-                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        } else if (e.getSource() == avgMenuItem) {
-            avgMenuItem.addActionListener(new AvgListener(centerPanel.table,
-                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        } else if (e.getSource() == minMenuItem) {
-            minMenuItem.addActionListener(new MinListener(centerPanel.table,
-                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        } else if (e.getSource() == maxMenuItem) {
-            maxMenuItem.addActionListener(new MaxListener(centerPanel.table,
-                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
-        }
 
+
+    public JButton getJtbSave() {
+        return jtbSave;
     }
+    public JButton getJtbAbout() {
+        return jtbAbout;
+    }
+    public JButton getJtbPrint() {
+        return jtbPrint;
+    }
+
+    public JButton getJtbAdd() {
+        return jtbAdd;
+    }
+
+    public JButton getJtbAvg() {
+        return jtbAvg;
+    }
+
+    public JButton getJtbExit() {
+        return jtbExit;
+    }
+
+    public JButton getJtbFill() {
+        return jtbFill;
+    }
+
+    public JButton getJtbHelp() {
+        return jtbHelp;
+    }
+
+    public JButton getJtbMax() {
+        return jtbMax;
+    }
+
+    public JButton getJtbMin() {
+        return jtbMin;
+    }
+
+    public JButton getJtbSigma() {
+        return jtbSigma;
+    }
+
+    public JButton getJtbZero() {
+        return jtbZero;
+    }
+
+    public JCheckBoxMenuItem getViewJToolBarMenuItem() {
+        return viewJToolBarMenuItem;
+    }
+
+    public JCheckBoxMenuItem getViewStatusBarMenuItem() {
+        return viewStatusBarMenuItem;
+    }
+
+    public JMenuItem getAboutMenuItem() {
+        return aboutMenuItem;
+    }
+
+    public JMenuItem getAvgMenuItem() {
+        return avgMenuItem;
+    }
+
+    public JMenuItem getExitMenuItem() {
+        return exitMenuItem;
+    }
+
+    public JMenuItem getHelpMenuItem() {
+        return helpMenuItem;
+    }
+
+    public JMenu getEditMenu() {
+        return editMenu;
+    }
+
+    public JMenuItem getMaxMenuItem() {
+        return maxMenuItem;
+    }
+
+    public JMenuItem getMinMenuItem() {
+        return minMenuItem;
+    }
+
+    public JMenuItem getPrintMenuItem() {
+        return printMenuItem;
+    }
+
+    public JMenuItem getSigmaMenuItem() {
+        return sigmaMenuItem;
+    }
+    public JMenuItem getSaveMenuItem() {
+        return saveMenuItem;
+    }
+
+    public AboutWindow getAboutWindow() {
+        return aboutWindow;
+    }
+
+    public HelpWindow getHelpWindow() {
+        return helpWindow;
+    }
+
+    public BottomStatusPanel getBottomStatusPanel() {
+        return bottomStatusPanel;
+    }
+
+    public CenterPanel getCenterPanel() {
+        return centerPanel;
+    }
+
+    public JToolBar getjToolBar() {
+        return jToolBar;
+    }
+
+    public void setAboutWindow(AboutWindow aboutWindow) {
+        this.aboutWindow = aboutWindow;
+    }
+
+    public void setHelpWindow(HelpWindow helpWindow) {
+        this.helpWindow = helpWindow;
+    }
+
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if (e.getSource() == jtbAbout || e.getSource() == aboutMenuItem) {
+//            if(aboutWindow != null) aboutWindow.setVisible(true);
+//            else {
+//                aboutWindow = new AboutWindow();
+//                aboutWindow.setVisible(true);
+//            }
+//        } else if (e.getSource() == viewStatusBarMenuItem) {
+//            boolean visible = viewStatusBarMenuItem.getState();
+//            if (visible) bottomStatusPanel.setVisible(false);
+//            else bottomStatusPanel.setVisible(true);
+//        } else if (e.getSource() == viewJToolBarMenuItem) {
+//            boolean visible = viewJToolBarMenuItem.getState();
+//            if (visible) jToolBar.setVisible(false);
+//            else jToolBar.setVisible(true);
+//        } else if (e.getSource() == jtbHelp || e.getSource() == helpMenuItem) {
+//            if(helpWindow != null) helpWindow.setVisible(true);
+//            else {
+//                helpWindow = new HelpWindow();
+//                helpWindow.setVisible(true);
+//            }
+//        } else if((e.getSource() == exitMenuItem) ||
+//                (e.getSource() == jtbExit)) {
+//            bottomStatusPanel.getInfoTextField().setText("Zamykanie aplikacji");
+//            windowClose();
+//        } else if ((e.getSource() == printMenuItem) ||
+//                (e.getSource() == jtbPrint)) {
+//            printListForm();
+//        } else if (e.getSource() == sigmaMenuItem) {
+//            sigmaMenuItem.addActionListener(new SumListener(centerPanel.table,
+//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        } else if (e.getSource() == avgMenuItem) {
+//            avgMenuItem.addActionListener(new AvgListener(centerPanel.table,
+//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        } else if (e.getSource() == minMenuItem) {
+//            minMenuItem.addActionListener(new MinListener(centerPanel.table,
+//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+//        } else if (e.getSource() == maxMenuItem) {
+//            maxMenuItem.addActionListener(new MaxListener(centerPanel.table,
+//                    centerPanel.resultTextArea, TABLE_ROWS, TABLE_COLS));
+////        }
+//
+//    }
 }

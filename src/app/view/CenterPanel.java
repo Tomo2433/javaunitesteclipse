@@ -1,4 +1,4 @@
-package app;
+package app.view;
 
 import app.listeners.*;
 
@@ -45,10 +45,11 @@ public class CenterPanel extends JPanel {
         parameterPanel = createParametersPanel();
         tablePanel = createTablePanel();
         operationsButtonsPanel = createOperationsButtonsPanel(icons);
+        operationsButtonsPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
         resultPanel = createResultPanel();
 
         this.add(parameterPanel, BorderLayout.NORTH);
-        this.add(tablePanel, BorderLayout.WEST);
+        this.add(tablePanel, BorderLayout.CENTER);
         this.add(operationsButtonsPanel, BorderLayout.EAST);
         this.add(resultPanel, BorderLayout.SOUTH);
     }
@@ -122,7 +123,7 @@ public class CenterPanel extends JPanel {
         table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
         tableScrollPane.setViewportView(table);
 
-        jPanel.add(tableScrollPane, BorderLayout.WEST);
+        jPanel.add(tableScrollPane, BorderLayout.CENTER);
 
         jPanel.add(operationsPanel, BorderLayout.SOUTH);
 
@@ -215,6 +216,7 @@ public class CenterPanel extends JPanel {
 
         resultTextArea.setLineWrap(true);
         resultTextArea.setEditable(false);
+        resultTextArea.setWrapStyleWord(true);
         textAreaScrollPane = new JScrollPane(resultTextArea);
         textAreaScrollPane.setPreferredSize(new Dimension(350,100));
         jPanel.add(textAreaScrollPane,BorderLayout.CENTER);
@@ -230,5 +232,33 @@ public class CenterPanel extends JPanel {
 
     public Insets getInsets() {
         return new Insets(5,10,10,10);
+    }
+
+    public JTextArea getResultTextArea() {
+        return resultTextArea;
+    }
+
+    public JTextField getNumberTextField() {
+        return numberTextField;
+    }
+
+    public JSlider getColumnSlider() {
+        return columnSlider;
+    }
+
+    public JSlider getRowSlider() {
+        return rowSlider;
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public static int getTableCols() {
+        return TABLE_COLS;
+    }
+
+    public static int getTableRows() {
+        return TABLE_ROWS;
     }
 }

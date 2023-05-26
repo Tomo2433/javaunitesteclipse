@@ -1,4 +1,4 @@
-package app;
+package app.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,7 @@ import java.awt.*;
 public class BottomStatusPanel extends JPanel {
 
     private JLabel infoLabel, statusLabel;
-    protected JTextField infoTextField, statusTextField;
+    private JTextField infoTextField, statusTextField;
     BottomStatusPanel(){
         createGUI();
     }
@@ -39,5 +39,13 @@ public class BottomStatusPanel extends JPanel {
 
     public Insets getInsets() {
         return new Insets(5,10,5,10);
+    }
+
+    public JTextField getInfoTextField() {
+        return infoTextField;
+    }
+
+    public JTextField getStatusTextField() {
+        return statusTextField;
     }
 }
