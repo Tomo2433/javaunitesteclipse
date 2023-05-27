@@ -1,14 +1,13 @@
 package app.view;
 
-import app.listeners.*;
+
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class CenterPanel extends JPanel {
 
@@ -21,6 +20,7 @@ public class CenterPanel extends JPanel {
     private JScrollPane tableScrollPane, textAreaScrollPane;
     protected JSlider rowSlider, columnSlider;
     private JLabel numberLabel, rowLabel, colLabel, operationLabel;
+
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
     protected JTable table;
     public Object[][] data = {
@@ -134,18 +134,10 @@ public class CenterPanel extends JPanel {
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
 
         jbtAdd = createJButton("Dodaj", icons.mIconAdd);
-        jbtAdd.addActionListener(new AddValueListener(numberTextField,
-                rowSlider,columnSlider, table, resultTextArea));
         jbtZero = createJButton("Wyzeruj", icons.mIconZero);
-        jbtZero.addActionListener(new ZeroTableValuesListener(table, TABLE_ROWS,
-                TABLE_COLS, resultTextArea));
         jbtFill = createJButton("Wypełnij", icons.mIconFill);
-        jbtFill.addActionListener(new FillTableListener(table, TABLE_ROWS,
-                TABLE_COLS, resultTextArea, numberTextField));
         jbtSave = createJButton("Zapisz", icons.mIconSave);
-        jbtSave.addActionListener(new SaveListener(table, resultTextArea,
-                TABLE_ROWS, TABLE_COLS));
-
+        
         jPanel.add(jbtAdd);
         jPanel.add(Box.createVerticalStrut(5));
         jPanel.add(jbtZero);
@@ -156,47 +148,17 @@ public class CenterPanel extends JPanel {
 
         return jPanel;
     }
+
+
     public JPanel createOperationPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         operationLabel = new JLabel("Obliczenia");
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
-        jbtCount.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resultTextArea.append("Wybierz operacje! \n");
-            }
-        });
 
         jPanel.add(operationLabel);
         jComboBox = new JComboBox<>(new String[]{"Wybierz operację",
                 "Sumowanie", "Średnia", "Min i Max"});
-        jComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for(ActionListener l : jbtCount.getActionListeners())
-                    jbtCount.removeActionListener(l);
-
-                String selectedOption = (String) jComboBox.getSelectedItem();
-                if (selectedOption.equals("Sumowanie")){
-                    jbtCount.addActionListener(new SumListener(table,
-                            resultTextArea, TABLE_ROWS, TABLE_COLS));
-                } else if (selectedOption.equals("Średnia")) {
-                    jbtCount.addActionListener(new AvgListener(table,
-                            resultTextArea, TABLE_ROWS, TABLE_COLS));
-                } else if (selectedOption.equals("Min i Max")) {
-                    jbtCount.addActionListener(new MinAndMaxListener(table,
-                            resultTextArea, TABLE_ROWS, TABLE_COLS));
-                } else {
-                    jbtCount.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            resultTextArea.append("Wybierz operacje! \n");
-                        }
-                    });
-                }
-            }
-        });
 
         jPanel.add(jComboBox);
         jPanel.add(jbtCount);
@@ -233,31 +195,42 @@ public class CenterPanel extends JPanel {
     public Insets getInsets() {
         return new Insets(5,10,10,10);
     }
-
+    public JButton getJbtAdd() {
+        return jbtAdd;
+    }
+    public JButton getJbtZero() {
+        return jbtZero;
+    }
+    public JButton getJbtFill() {
+        return jbtFill;
+    }
+    public JButton getJbtSave() {
+        return jbtSave;
+    }
+    public JButton getJbtCount() {
+        return jbtCount;
+    }
+    public JComboBox getjComboBox() {
+        return jComboBox;
+    }
     public JTextArea getResultTextArea() {
         return resultTextArea;
     }
-
     public JTextField getNumberTextField() {
         return numberTextField;
     }
-
     public JSlider getColumnSlider() {
         return columnSlider;
     }
-
     public JSlider getRowSlider() {
         return rowSlider;
     }
-
     public JTable getTable() {
         return table;
     }
-
     public static int getTableCols() {
         return TABLE_COLS;
     }
-
     public static int getTableRows() {
         return TABLE_ROWS;
     }

@@ -1,16 +1,11 @@
 package app.view;
 
-import app.listeners.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
 import java.net.URL;
-
-import static app.view.CenterPanel.TABLE_COLS;
-import static app.view.CenterPanel.TABLE_ROWS;
 
 public class MyWindow extends JFrame{
 
