@@ -1,17 +1,15 @@
 package app.view;
 
 import app.model.IntegerTableModel;
+import app.model.SimpleComboBoxModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
 
-    protected static final int TABLE_ROWS = 5;
-    protected static final int TABLE_COLS = 5;
     private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel;
     protected JTextField numberTextField, rowTextField, colTextField;
@@ -22,22 +20,18 @@ public class CenterPanel extends JPanel {
 
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
     private IntegerTableModel tableModel;
+    private ComboBoxModel comboBoxModel;
     protected JTable table;
-    public Object[][] data = {
-            {0,0,0,0,0},
-            {0,0,0,0,0},
-            {0,0,0,0,0},
-            {0,0,0,0,0},
-            {0,0,0,0,0},
-    };
-    private Object[] tableColumnNames = {"1", "2", "3", "4", "5"};
     private TitledBorder titledBorder;
     private Border border;
     private JComboBox jComboBox;
+    private Icons icons;
 
 
     public CenterPanel() {
-        Icons icons = new Icons();
+        icons = new Icons();
+        tableModel = new IntegerTableModel();
+        comboBoxModel = new SimpleComboBoxModel();
         createGUI(icons);
     }
     public void createGUI(Icons icons) {
@@ -64,7 +58,7 @@ public class CenterPanel extends JPanel {
         rowTextField = new JTextField("1");
         rowTextField.setEditable(false);
         rowSlider = new JSlider(JSlider.HORIZONTAL,
-                1, TABLE_ROWS, 1);
+                1, tableModel.getRowCount(), 1);
         rowSlider.setMinorTickSpacing(1);
         rowSlider.setPaintTicks(true);
         rowSlider.setPreferredSize(new Dimension(100,20));
@@ -77,7 +71,7 @@ public class CenterPanel extends JPanel {
         colTextField = new JTextField("1");
         colTextField.setEditable(false);
         columnSlider = new JSlider(JSlider.HORIZONTAL,
-                1, TABLE_COLS, 1);
+                1, tableModel.getColumnCount(), 1);
         columnSlider.setMinorTickSpacing(1);
         columnSlider.setPaintTicks(true);
         columnSlider.setPreferredSize(new Dimension(100,20));
@@ -106,7 +100,6 @@ public class CenterPanel extends JPanel {
     }
     public JPanel createTablePanel() {
         JPanel jPanel = new JPanel();
-        tableModel = new IntegerTableModel();
         tableScrollPane = new JScrollPane();
         jPanel.setLayout(new BorderLayout());
         operationsPanel = createOperationPanel(new Icons());
@@ -115,13 +108,6 @@ public class CenterPanel extends JPanel {
         table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         tableScrollPane.setPreferredSize(new Dimension(500,100));
-//        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-//        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-//        table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-//        table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-//        table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-//        table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
-//        table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
         tableScrollPane.setViewportView(table);
 
         jPanel.add(tableScrollPane, BorderLayout.CENTER);
@@ -158,8 +144,9 @@ public class CenterPanel extends JPanel {
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
 
         jPanel.add(operationLabel);
-        jComboBox = new JComboBox<>(new String[]{"Wybierz operację",
-                "Sumowanie", "Średnia", "Min i Max"});
+        jComboBox = new JComboBox();
+        jComboBox.setModel(comboBoxModel);
+        jComboBox.setSelectedItem(comboBoxModel.getElementAt(0));
 
         jPanel.add(jComboBox);
         jPanel.add(jbtCount);
@@ -226,14 +213,6 @@ public class CenterPanel extends JPanel {
     public JSlider getRowSlider() {
         return rowSlider;
     }
-    public JTable getTable() {
-        return table;
-    }
     public IntegerTableModel getTableModel() { return  tableModel; }
-    public static int getTableCols() {
-        return TABLE_COLS;
-    }
-    public static int getTableRows() {
-        return TABLE_ROWS;
-    }
+
 }
