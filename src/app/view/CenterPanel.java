@@ -3,6 +3,9 @@ package app.view;
 import app.model.IntegerTableModel;
 import app.model.SimpleComboBoxModel;
 
+import com.l2fprod.common.swing.JTaskPane;
+import com.l2fprod.common.swing.JTaskPaneGroup;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -11,7 +14,9 @@ import java.awt.*;
 public class CenterPanel extends JPanel {
 
     private JPanel parameterPanel, tablePanel, operationsPanel,
-                    resultPanel,operationsButtonsPanel;
+                    resultPanel,operationsButtonsPanel, taskPanePanel;
+    private JTaskPane taskPane;
+    private JTaskPaneGroup taskPaneGroup;
     protected JTextField numberTextField, rowTextField, colTextField;
     protected JTextArea resultTextArea = new JTextArea();
     private JScrollPane tableScrollPane, textAreaScrollPane;
@@ -36,6 +41,7 @@ public class CenterPanel extends JPanel {
     }
     public void createGUI(Icons icons) {
         this.setLayout(new BorderLayout());
+        taskPanePanel = createJTaskPane(icons);
         parameterPanel = createParametersPanel();
         tablePanel = createTablePanel();
         operationsButtonsPanel = createOperationsButtonsPanel(icons);
@@ -43,6 +49,7 @@ public class CenterPanel extends JPanel {
         resultPanel = createResultPanel();
 
         this.add(parameterPanel, BorderLayout.NORTH);
+        this.add(taskPanePanel, BorderLayout.WEST);
         this.add(tablePanel, BorderLayout.CENTER);
         this.add(operationsButtonsPanel, BorderLayout.EAST);
         this.add(resultPanel, BorderLayout.SOUTH);
@@ -81,7 +88,6 @@ public class CenterPanel extends JPanel {
             colTextField.setText(Integer.toString(value));
         });
 
-
         numberLabel = new JLabel("Wprowadź liczbę");
         rowLabel = new JLabel("Numer wiersza");
         colLabel = new JLabel("Numer kolumny");
@@ -94,7 +100,6 @@ public class CenterPanel extends JPanel {
         jPanel.add(colLabel);
         jPanel.add(columnSlider);
         jPanel.add(colTextField);
-
 
         return jPanel;
     }
@@ -136,7 +141,6 @@ public class CenterPanel extends JPanel {
         return jPanel;
     }
 
-
     public JPanel createOperationPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -163,13 +167,27 @@ public class CenterPanel extends JPanel {
         jPanel.setBorder(titledBorder);
         jPanel.setLayout(new BorderLayout());
 
-
         resultTextArea.setLineWrap(true);
         resultTextArea.setEditable(false);
         resultTextArea.setWrapStyleWord(true);
         textAreaScrollPane = new JScrollPane(resultTextArea);
         textAreaScrollPane.setPreferredSize(new Dimension(350,100));
         jPanel.add(textAreaScrollPane,BorderLayout.CENTER);
+
+        return jPanel;
+    }
+    public JPanel createJTaskPane(Icons icons) {
+        JPanel jPanel = new JPanel();
+        taskPane = new JTaskPane();
+        taskPaneGroup = new JTaskPaneGroup();
+        jPanel.setLayout(new BorderLayout());
+        jPanel.add("Center", new JScrollPane(taskPane));
+
+        taskPaneGroup.setTitle("Obliczenia");
+        taskPaneGroup.setIcon(icons.mIconSigma);
+        taskPane.add(taskPaneGroup);
+        taskPaneGroup.setExpanded(false);
+
 
         return jPanel;
     }
@@ -215,4 +233,7 @@ public class CenterPanel extends JPanel {
     }
     public IntegerTableModel getTableModel() { return  tableModel; }
 
+    public JTaskPaneGroup getTaskPaneGroup() {
+        return taskPaneGroup;
+    }
 }

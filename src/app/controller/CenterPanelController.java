@@ -2,9 +2,12 @@ package app.controller;
 
 import app.listeners.*;
 import app.view.CenterPanel;
+import com.l2fprod.common.swing.JTaskPaneGroup;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class CenterPanelController implements ActionListener {
     private CenterPanel _centerPanel;
@@ -36,7 +39,35 @@ public class CenterPanelController implements ActionListener {
                 _centerPanel.getTableModel().getColumnCount()));
         _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
+        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"XD");
     }
+    void addNestedGroupAction(final JTaskPaneGroup parent, String menu) {
+        Action addNestedGroup = new AbstractAction(menu) {
+            public void actionPerformed(ActionEvent e) {
+                String s = e.getActionCommand();
+                if (s.equals("XD")) {
+                    // Your code here
+                }
+                if (s.equals("Edit Product")) {
+                    // Your code here
+                }
+                if (s.equals("Delete Product")) {
+                    // Your code here
+                }
+                if (s.equals("Find Product")) {
+                    // Your code here
+                }
+                if (s.equals("Product List")) {
+                    // Your code here
+                }
+                if (s.equals("Expire Date")) {
+                    // Your code here
+                }
+            }
+        };
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
