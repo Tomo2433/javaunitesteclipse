@@ -1,18 +1,20 @@
 package app.listeners;
 
+import app.model.IntegerTableModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FillTableListener implements ActionListener {
 
-    private JTable table;
+    private IntegerTableModel tableModel;
     private JTextArea textArea;
     private JTextField textField;
     private int rows, cols;
-    public FillTableListener(JTable table, int rows, int cols,
+    public FillTableListener(IntegerTableModel tableModel, int rows, int cols,
                              JTextArea textArea, JTextField textField){
-        this.table = table;
+        this.tableModel = tableModel;
         this.rows = rows;
         this.cols = cols;
         this.textArea = textArea;
@@ -24,7 +26,7 @@ public class FillTableListener implements ActionListener {
         int value = Integer.parseInt(textField.getText());
         for(int i=0; i<rows; i++)
             for(int j=0; j<cols; j++)
-                table.setValueAt(value,i,j);
+                tableModel.setValue(value,i,j);
         textArea.append("Wypełniono tabelę wartością: "+value+"\n");
         }catch (NumberFormatException ne){
             JFrame frame = new JFrame();

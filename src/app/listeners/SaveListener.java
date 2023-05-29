@@ -1,5 +1,7 @@
 package app.listeners;
 
+import app.model.IntegerTableModel;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
@@ -10,13 +12,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class SaveListener implements ActionListener {
-    private JTable table;
+    private IntegerTableModel tableModel;
     private JTextArea textArea;
     private File file, folder;
     private PrintWriter printWriter;
     private int rows, cols;
-    public SaveListener(JTable table, JTextArea textArea, int rows, int cols){
-        this.table = table;
+    public SaveListener(IntegerTableModel tableModel, JTextArea textArea,
+                        int rows, int cols){
+        this.tableModel = tableModel;
         this.rows = rows;
         this.cols = cols;
         this.textArea = textArea;
@@ -37,7 +40,7 @@ public class SaveListener implements ActionListener {
                     for (int j=1; j<=cols; j++){
                         printWriter.print("["+i+","+j+"]");
                         printWriter.print(": ");
-                        printWriter.print(table.getValueAt(i-1,j-1));
+                        printWriter.print(tableModel.getValueAt(i-1,j-1));
                         printWriter.print("\t");
                     }
                     printWriter.println("");

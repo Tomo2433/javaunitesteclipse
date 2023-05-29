@@ -24,71 +24,71 @@ public class MyWindowController implements ActionListener {
         _myWindow.getJtbPrint().addActionListener(this);
         _myWindow.getPrintMenuItem().addActionListener(this);
         _myWindow.getJtbSave().addActionListener(new SaveListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(), 
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getSaveMenuItem().addActionListener(new SaveListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getSigmaMenuItem().addActionListener(new SumListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getJtbSigma().addActionListener(new SumListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getAvgMenuItem().addActionListener(new AvgListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getJtbAvg().addActionListener(new AvgListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getMinMenuItem().addActionListener(new MinListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getJtbMin().addActionListener(new MinListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getJtbMax().addActionListener(new MaxListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getMaxMenuItem().addActionListener(new MaxListener(
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols()));
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
         _myWindow.getJtbFill().addActionListener(new FillTableListener(
-                _myWindow.getCenterPanel().getTable(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols(),
+                _myWindow.getCenterPanel().getTableModel(),
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount(),
                 _myWindow.getCenterPanel().getResultTextArea(),
                 _myWindow.getCenterPanel().getNumberTextField()));
         _myWindow.getJtbZero().addActionListener(new ZeroTableValuesListener(
-                _myWindow.getCenterPanel().getTable(),
-                _myWindow.getCenterPanel().getTableRows(),
-                _myWindow.getCenterPanel().getTableCols(),
+                _myWindow.getCenterPanel().getTableModel(),
+                _myWindow.getCenterPanel().getTableModel().getRowCount(),
+                _myWindow.getCenterPanel().getTableModel().getColumnCount(),
                 _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbAdd().addActionListener(new AddValueListener(
                 _myWindow.getCenterPanel().getNumberTextField(),
                 _myWindow.getCenterPanel().getRowSlider(),
                 _myWindow.getCenterPanel().getColumnSlider(),
-                _myWindow.getCenterPanel().getTable(),
+                _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea()));
 
     }

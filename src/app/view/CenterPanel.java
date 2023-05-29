@@ -1,13 +1,12 @@
 package app.view;
 
-
+import app.model.IntegerTableModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-
 
 public class CenterPanel extends JPanel {
 
@@ -22,6 +21,7 @@ public class CenterPanel extends JPanel {
     private JLabel numberLabel, rowLabel, colLabel, operationLabel;
 
     private JButton jbtAdd, jbtZero, jbtFill, jbtSave, jbtCount;
+    private IntegerTableModel tableModel;
     protected JTable table;
     public Object[][] data = {
             {0,0,0,0,0},
@@ -106,21 +106,22 @@ public class CenterPanel extends JPanel {
     }
     public JPanel createTablePanel() {
         JPanel jPanel = new JPanel();
+        tableModel = new IntegerTableModel();
         tableScrollPane = new JScrollPane();
         jPanel.setLayout(new BorderLayout());
         operationsPanel = createOperationPanel(new Icons());
 
-        table = new JTable(data, tableColumnNames);
+        table = new JTable(tableModel);
         table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         tableScrollPane.setPreferredSize(new Dimension(500,100));
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-        table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-        table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-        table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-        table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
-        table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+//        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+//        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+//        table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+//        table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+//        table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+//        table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+//        table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
         tableScrollPane.setViewportView(table);
 
         jPanel.add(tableScrollPane, BorderLayout.CENTER);
@@ -228,6 +229,7 @@ public class CenterPanel extends JPanel {
     public JTable getTable() {
         return table;
     }
+    public IntegerTableModel getTableModel() { return  tableModel; }
     public static int getTableCols() {
         return TABLE_COLS;
     }

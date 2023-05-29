@@ -16,24 +16,24 @@ public class CenterPanelController implements ActionListener {
                 _centerPanel.getNumberTextField(),
                 _centerPanel.getRowSlider(),
                 _centerPanel.getColumnSlider(),
-                _centerPanel.getTable(),
+                _centerPanel.getTableModel(),
                 _centerPanel.getResultTextArea()));
         _centerPanel.getJbtZero().addActionListener(new ZeroTableValuesListener(
-                _centerPanel.getTable(),
-                _centerPanel.getTableRows(),
-                _centerPanel.getTableCols(),
+                _centerPanel.getTableModel(),
+                _centerPanel.getTableModel().getRowCount(),
+                _centerPanel.getTableModel().getColumnCount(),
                 _centerPanel.getResultTextArea()));
         _centerPanel.getJbtFill().addActionListener(new FillTableListener(
-                _centerPanel.getTable(),
-                _centerPanel.getTableRows(),
-                _centerPanel.getTableCols(),
+                _centerPanel.getTableModel(),
+                _centerPanel.getTableModel().getRowCount(),
+                _centerPanel.getTableModel().getColumnCount(),
                 _centerPanel.getResultTextArea(),
                 _centerPanel.getNumberTextField()));
         _centerPanel.getJbtSave().addActionListener(new SaveListener(
-                _centerPanel.getTable(),
+                _centerPanel.getTableModel(),
                 _centerPanel.getResultTextArea(),
-                _centerPanel.getTableRows(),
-                _centerPanel.getTableCols()));
+                _centerPanel.getTableModel().getRowCount(),
+                _centerPanel.getTableModel().getColumnCount()));
         _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
     }
@@ -45,22 +45,22 @@ public class CenterPanelController implements ActionListener {
         selectedOption = (String) _centerPanel.getjComboBox().getSelectedItem();
         if (selectedOption.equals("Sumowanie")){
             _centerPanel.getJbtCount().addActionListener(new SumListener(
-                    _centerPanel.getTable(),
+                    _centerPanel.getTableModel(),
                     _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableRows(),
-                    _centerPanel.getTableCols()));
+                    _centerPanel.getTableModel().getRowCount(),
+                    _centerPanel.getTableModel().getColumnCount()));
         } else if (selectedOption.equals("Średnia")) {
             _centerPanel.getJbtCount().addActionListener(new AvgListener(
-                    _centerPanel.getTable(),
+                    _centerPanel.getTableModel(),
                     _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableRows(),
-                    _centerPanel.getTableCols()));
+                    _centerPanel.getTableModel().getRowCount(),
+                    _centerPanel.getTableModel().getColumnCount()));
         } else if (selectedOption.equals("Min i Max")) {
             _centerPanel.getJbtCount().addActionListener(new MinAndMaxListener(
-                    _centerPanel.getTable(),
+                    _centerPanel.getTableModel(),
                     _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableRows(),
-                    _centerPanel.getTableCols()));
+                    _centerPanel.getTableModel().getRowCount(),
+                    _centerPanel.getTableModel().getColumnCount()));
         } else {
             _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         }

@@ -1,17 +1,20 @@
 package app.listeners;
 
+import app.model.IntegerTableModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SumListener implements ActionListener {
-    private JTable table;
+    private IntegerTableModel tableModel;
     private JTextArea textArea;
     private int rows, cols;
     private int sum;
 
-    public SumListener(JTable table, JTextArea textArea, int rows, int cols){
-        this.table = table;
+    public SumListener(IntegerTableModel tableModel, JTextArea textArea,
+                       int rows, int cols){
+        this.tableModel = tableModel;
         this.textArea = textArea;
         this.rows = rows;
         this.cols = cols;
@@ -20,7 +23,7 @@ public class SumListener implements ActionListener {
         sum = 0;
         for (int i=0; i<rows; i++)
             for (int j=0; j<cols; j++)
-                sum += (int)table.getValueAt(i,j);
+                sum += (int)tableModel.getValueAt(i,j);
         textArea.append("Suma wartości komórek: "+sum+"\n");
     }
 }

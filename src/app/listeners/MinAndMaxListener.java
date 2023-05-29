@@ -1,31 +1,34 @@
 package app.listeners;
 
+import app.model.IntegerTableModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MinAndMaxListener implements ActionListener {
-    private JTable table;
+    private IntegerTableModel tableModel;
     private JTextArea textArea;
     private int rows, cols;
     private int value;
 
 
-    public MinAndMaxListener(JTable table, JTextArea textArea, int rows, int cols){
-        this.table = table;
+    public MinAndMaxListener(IntegerTableModel tableModel, JTextArea textArea,
+                             int rows, int cols){
+        this.tableModel = tableModel;
         this.textArea = textArea;
         this.rows = rows;
         this.cols = cols;
     }
     public void actionPerformed(ActionEvent e) {
-        int max = (int) table.getValueAt(0, 0);
+        int max = (int) tableModel.getValueAt(0, 0);
         int min = max;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if ((int) table.getValueAt(i, j) >= max)
-                    max = (int) table.getValueAt(i, j);
-                if ((int) table.getValueAt(i, j) <= min)
-                    min = (int) table.getValueAt(i, j);
+                if ((int) tableModel.getValueAt(i, j) >= max)
+                    max = (int) tableModel.getValueAt(i, j);
+                if ((int) tableModel.getValueAt(i, j) <= min)
+                    min = (int) tableModel.getValueAt(i, j);
             }
         }
 
