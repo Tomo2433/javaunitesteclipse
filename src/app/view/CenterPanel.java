@@ -188,7 +188,6 @@ public class CenterPanel extends JPanel {
         taskPane.add(taskPaneGroup);
         taskPaneGroup.setExpanded(false);
 
-
         return jPanel;
     }
     private JButton createJButton(String text, Icon icon){
