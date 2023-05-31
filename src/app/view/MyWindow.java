@@ -7,7 +7,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.PrinterJob;
 import java.net.URL;
 
-public class MyWindow extends JFrame{
+public class MyWindow extends JFrame implements Runnable{
 
     private static final long serialVersionUID = 1L;
     private final int WINDOW_WIDTH_SIZE = 670;
@@ -18,6 +18,7 @@ public class MyWindow extends JFrame{
     private BottomStatusPanel bottomStatusPanel;
     AboutWindow aboutWindow = null;
     HelpWindow helpWindow = null;
+    TipOfTheDayWindow tipOfTheday = null;
 
 
     //menu variables definition
@@ -31,6 +32,7 @@ public class MyWindow extends JFrame{
     JButton jtbSave, jtbPrint, jtbExit, jtbAdd, jtbZero,
             jtbFill, jtbSigma, jtbAvg, jtbMin,
             jtbMax, jtbHelp, jtbAbout;
+
 
     public MyWindow(){
         setTitle("MyWindow v1.0.1");
@@ -51,6 +53,7 @@ public class MyWindow extends JFrame{
 
         try{
             javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+
                 @Override
                 public void run() {
                     Icons icons = new Icons();
@@ -62,9 +65,20 @@ public class MyWindow extends JFrame{
         catch (Exception e){
             System.out.println("ERROR - error while creating gui of application");
         }
+        Thread thread = new Thread(this);
+        thread.start();
     }
-
-
+    public void run() {
+        try {
+            Thread.sleep(1000); // opoznienie 1 sekunda
+        }
+        catch(InterruptedException e) {}
+        openTipOfTheday();
+    }
+    public void openTipOfTheday() {
+        tipOfTheday = new TipOfTheDayWindow();
+        tipOfTheday.setVisible(true);
+    }
 
     private void createMenus(Icons icons){
         //create menu bar
