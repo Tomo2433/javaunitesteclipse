@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class CenterPanel extends JPanel {
 
@@ -185,11 +186,17 @@ public class CenterPanel extends JPanel {
 
         taskPaneGroup.setTitle("Obliczenia");
         taskPaneGroup.setIcon(icons.mIconSigma);
+        JLabel searchLabel = new JLabel("Search:");
+        JTextField searchField = new JTextField("");
+        taskPaneGroup.add(searchLabel);
+        taskPaneGroup.add(searchField);
         taskPane.add(taskPaneGroup);
-        taskPaneGroup.setExpanded(false);
+
+        taskPaneGroup.setExpanded(true);
 
         return jPanel;
     }
+
     private JButton createJButton(String text, Icon icon){
         JButton jButton = new JButton(text, icon);
         jButton.setMaximumSize(new Dimension(100,23));

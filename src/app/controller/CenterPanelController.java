@@ -39,44 +39,42 @@ public class CenterPanelController implements ActionListener {
                 _centerPanel.getTableModel().getColumnCount()));
         _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Add New Product");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Edit Product");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Delete Product");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Find Product");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Product List");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Expire Date");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Breakage");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Low Stock");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Transfer");
-        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Price List");
-    }
-    void addNestedGroupAction(final JTaskPaneGroup parent, String menu) {
-        Action addNestedGroup = new AbstractAction(menu) {
-            public void actionPerformed(ActionEvent e) {
-                String s = e.getActionCommand();
-                if (s.equals("Add New Product")) {
-                    
-                }
-                if (s.equals("Edit Product")) {
-                    // Your code here
-                }
-                if (s.equals("Delete Product")) {
-                    // Your code here
-                }
-                if (s.equals("Find Product")) {
-                    // Your code here
-                }
-                if (s.equals("Product List")) {
-                    // Your code here
-                }
-                if (s.equals("Expire Date")) {
-                    // Your code here
-                }
-            }
-        };
-    }
-
-
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Add New Product");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Edit Product");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Delete Product");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Find Product");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Product List");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Expire Date");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Breakage");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Low Stock");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Transfer");
+//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Price List");
+//    }
+//    void addNestedGroupAction(final JTaskPaneGroup parent, String menu) {
+//        Action addNestedGroup = new AbstractAction(menu) {
+//            public void actionPerformed(ActionEvent e) {
+//                String s = e.getActionCommand();
+//                if (s.equals("Add New Product")) {
+//                    _centerPanel.getResultTextArea().append("Wybierz operacje! \n");
+//                }
+//                if (s.equals("Edit Product")) {
+//                    // Your code here
+//                }
+//                if (s.equals("Delete Product")) {
+//                    // Your code here
+//                }
+//                if (s.equals("Find Product")) {
+//                    // Your code here
+//                }
+//                if (s.equals("Product List")) {
+//                    // Your code here
+//                }
+//                if (s.equals("Expire Date")) {
+//                    // Your code here
+//                }
+//            }
+//        };
+     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
