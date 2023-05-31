@@ -1,16 +1,20 @@
 package app.view;
 
+import app.controller.CenterPanelController;
 import app.model.IntegerTableModel;
 import app.model.SimpleComboBoxModel;
 
 import com.l2fprod.common.swing.JTaskPane;
 import com.l2fprod.common.swing.JTaskPaneGroup;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Date;
+import java.util.EventListener;
 
 public class CenterPanel extends JPanel {
 
@@ -31,6 +35,7 @@ public class CenterPanel extends JPanel {
     private TitledBorder titledBorder;
     private Border border;
     private JComboBox jComboBox;
+    private JDateChooser dateChooser;
     private Icons icons;
 
 
@@ -146,6 +151,10 @@ public class CenterPanel extends JPanel {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         operationLabel = new JLabel("Obliczenia");
+        dateChooser = new JDateChooser();
+        dateChooser.setDate(new Date());
+        dateChooser.setPreferredSize(new Dimension(100,20));
+        dateChooser.setDateFormatString("yyyy-MM-dd");
         jbtCount = createJButton("Oblicz", icons.mIconAvg );
 
         jPanel.add(operationLabel);
@@ -155,6 +164,7 @@ public class CenterPanel extends JPanel {
 
         jPanel.add(jComboBox);
         jPanel.add(jbtCount);
+        jPanel.add(dateChooser);
 
         return jPanel;
     }
@@ -186,12 +196,7 @@ public class CenterPanel extends JPanel {
 
         taskPaneGroup.setTitle("Obliczenia");
         taskPaneGroup.setIcon(icons.mIconSigma);
-        JLabel searchLabel = new JLabel("Search:");
-        JTextField searchField = new JTextField("");
-        taskPaneGroup.add(searchLabel);
-        taskPaneGroup.add(searchField);
         taskPane.add(taskPaneGroup);
-
         taskPaneGroup.setExpanded(true);
 
         return jPanel;
@@ -241,5 +246,8 @@ public class CenterPanel extends JPanel {
 
     public JTaskPaneGroup getTaskPaneGroup() {
         return taskPaneGroup;
+    }
+    public JDateChooser getDateChooser() {
+        return dateChooser;
     }
 }

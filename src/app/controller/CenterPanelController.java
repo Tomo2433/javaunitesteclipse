@@ -5,13 +5,20 @@ import app.view.CenterPanel;
 import com.l2fprod.common.swing.JTaskPaneGroup;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CenterPanelController implements ActionListener {
     private CenterPanel _centerPanel;
     private String selectedOption;
+    private Action sumAction, avgAction, minAction, maxAction;
 
     public CenterPanelController(CenterPanel centerPanel) {
         _centerPanel = centerPanel;
@@ -37,44 +44,69 @@ public class CenterPanelController implements ActionListener {
                 _centerPanel.getResultTextArea(),
                 _centerPanel.getTableModel().getRowCount(),
                 _centerPanel.getTableModel().getColumnCount()));
-        _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
+        _centerPanel.getJbtCount().addActionListener(e1 -> _centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Add New Product");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Edit Product");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Delete Product");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Find Product");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Product List");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Expire Date");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Breakage");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Low Stock");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Transfer");
-//        addNestedGroupAction(_centerPanel.getTaskPaneGroup(),"Price List");
-//    }
-//    void addNestedGroupAction(final JTaskPaneGroup parent, String menu) {
-//        Action addNestedGroup = new AbstractAction(menu) {
-//            public void actionPerformed(ActionEvent e) {
-//                String s = e.getActionCommand();
-//                if (s.equals("Add New Product")) {
-//                    _centerPanel.getResultTextArea().append("Wybierz operacje! \n");
-//                }
-//                if (s.equals("Edit Product")) {
-//                    // Your code here
-//                }
-//                if (s.equals("Delete Product")) {
-//                    // Your code here
-//                }
-//                if (s.equals("Find Product")) {
-//                    // Your code here
-//                }
-//                if (s.equals("Product List")) {
-//                    // Your code here
-//                }
-//                if (s.equals("Expire Date")) {
-//                    // Your code here
-//                }
-//            }
-//        };
-     }
+        _centerPanel.getDateChooser().addPropertyChangeListener("date", new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if ("date".equals(evt.getPropertyName())) {
+                    // Pobieranie wybranej daty
+                    Date selectedDate = (Date) evt.getNewValue();
+
+                    // Formatowanie daty
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String formattedDate = dateFormat.format(selectedDate);
+
+                    // Ustawianie daty w JTextArea
+                    _centerPanel.getResultTextArea().append("Wybrano datę: "+formattedDate+"\n");
+                }
+            }
+        });
+        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Sumowanie") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SumListener(
+                        _centerPanel.getTableModel(),
+                        _centerPanel.getResultTextArea(),
+                        _centerPanel.getTableModel().getRowCount(),
+                        _centerPanel.getTableModel().getColumnCount())
+                        .actionPerformed(e);
+            }
+        });
+        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Średnia") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AvgListener(
+                        _centerPanel.getTableModel(),
+                        _centerPanel.getResultTextArea(),
+                        _centerPanel.getTableModel().getRowCount(),
+                        _centerPanel.getTableModel().getColumnCount())
+                        .actionPerformed(e);
+            }
+        });
+        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Min") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MinListener(
+                        _centerPanel.getTableModel(),
+                        _centerPanel.getResultTextArea(),
+                        _centerPanel.getTableModel().getRowCount(),
+                        _centerPanel.getTableModel().getColumnCount())
+                        .actionPerformed(e);
+            }
+        });
+        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Max") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MaxListener(
+                        _centerPanel.getTableModel(),
+                        _centerPanel.getResultTextArea(),
+                        _centerPanel.getTableModel().getRowCount(),
+                        _centerPanel.getTableModel().getColumnCount())
+                        .actionPerformed(e);
+            }
+        });
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

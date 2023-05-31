@@ -10,7 +10,7 @@ import java.net.URL;
 public class MyWindow extends JFrame{
 
     private static final long serialVersionUID = 1L;
-    private final int WINDOW_WIDTH_SIZE = 650;
+    private final int WINDOW_WIDTH_SIZE = 670;
     private final int WINDOW_HEIGHT_SIZE = 450;
     private static final String ICON_PATH = "/resources/";
     private JPanel contentPane;
@@ -63,6 +63,8 @@ public class MyWindow extends JFrame{
             System.out.println("ERROR - error while creating gui of application");
         }
     }
+
+
 
     private void createMenus(Icons icons){
         //create menu bar
