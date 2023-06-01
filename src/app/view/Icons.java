@@ -8,11 +8,11 @@ public class Icons {
     public Icon iconExit, iconAbout, iconHelp, iconAdd,
             iconAvg, iconFill, iconLogin, iconLogout,
             iconMax, iconMin, iconPrint, iconZero, iconSave,
-            iconSigma;
+            iconSigma, iconChart;
     public Icon mIconExit, mIconAbout, mIconHelp, mIconAdd,
             mIconAvg, mIconFill, mIconLogin, mIconLogout,
             mIconMax, mIconMin, mIconPrint, mIconZero, mIconSave,
-            mIconSigma;
+            mIconSigma, mIconChart;
     private static final String ICON_PATH = "/resources/";
     Icons(){
         createIcons();
@@ -40,7 +40,8 @@ public class Icons {
         iconZero = createMyIcon("zero.png");
         iconSave = createMyIcon("save.png");
         iconSigma = createMyIcon("sigma.png");
-        //create 16x16px icons for menubar
+        iconChart = createMyIcon("bar_chart.png");
+                //create 16x16px icons for menubar
         mIconExit = createMyIcon("min_exit.png");
         mIconAbout = createMyIcon("min_about.png");
         mIconHelp = createMyIcon("min_help.png");
@@ -55,5 +56,6 @@ public class Icons {
         mIconZero = createMyIcon("min_zero.png");
         mIconSave = createMyIcon("min_save.png");
         mIconSigma = createMyIcon("min_sigma.png");
+        mIconChart = createMyIcon("min_bar_chart.png");
     }
 }

@@ -1,6 +1,5 @@
 package app.view;
 
-import app.controller.CenterPanelController;
 import app.model.IntegerTableModel;
 import app.model.SimpleComboBoxModel;
 
@@ -12,16 +11,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.Date;
-import java.util.EventListener;
 
 public class CenterPanel extends JPanel {
 
     private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel, taskPanePanel;
     private JTaskPane taskPane;
-    private JTaskPaneGroup taskPaneGroup;
+    private JTaskPaneGroup taskPaneCountGroup, taskPaneChartGroup;
     protected JTextField numberTextField, rowTextField, colTextField;
     protected JTextArea resultTextArea = new JTextArea();
     private JScrollPane tableScrollPane, textAreaScrollPane;
@@ -37,11 +34,13 @@ public class CenterPanel extends JPanel {
     private JComboBox jComboBox;
     private JDateChooser dateChooser;
     private Icons icons;
+    private TableView tableView;
 
 
     public CenterPanel() {
         icons = new Icons();
-        tableModel = new IntegerTableModel();
+        tableView = new TableView();
+        tableModel = tableView.getTableModel();
         comboBoxModel = new SimpleComboBoxModel();
         createGUI(icons);
     }
@@ -111,18 +110,13 @@ public class CenterPanel extends JPanel {
     }
     public JPanel createTablePanel() {
         JPanel jPanel = new JPanel();
-        tableScrollPane = new JScrollPane();
         jPanel.setLayout(new BorderLayout());
         operationsPanel = createOperationPanel(new Icons());
 
-        table = new JTable(tableModel);
-        table.setEnabled(false);
-        table.getTableHeader().setReorderingAllowed(false);
-        tableScrollPane.setPreferredSize(new Dimension(500,100));
-        tableScrollPane.setViewportView(table);
+        table = tableView.getTable();
+        tableScrollPane = tableView.getTableScrollPane();
 
         jPanel.add(tableScrollPane, BorderLayout.CENTER);
-
         jPanel.add(operationsPanel, BorderLayout.SOUTH);
 
         return jPanel;
@@ -190,14 +184,19 @@ public class CenterPanel extends JPanel {
     public JPanel createJTaskPane(Icons icons) {
         JPanel jPanel = new JPanel();
         taskPane = new JTaskPane();
-        taskPaneGroup = new JTaskPaneGroup();
+        taskPaneCountGroup = new JTaskPaneGroup();
+        taskPaneChartGroup = new JTaskPaneGroup();
         jPanel.setLayout(new BorderLayout());
         jPanel.add("Center", new JScrollPane(taskPane));
 
-        taskPaneGroup.setTitle("Obliczenia");
-        taskPaneGroup.setIcon(icons.mIconSigma);
-        taskPane.add(taskPaneGroup);
-        taskPaneGroup.setExpanded(true);
+        taskPaneCountGroup.setTitle("Obliczenia");
+        taskPaneCountGroup.setIcon(icons.mIconSigma);
+        taskPaneChartGroup.setTitle("Wykres");
+        taskPaneChartGroup.setIcon(icons.mIconChart);
+        taskPane.add(taskPaneCountGroup);
+        taskPane.add(taskPaneChartGroup);
+        taskPaneCountGroup.setExpanded(false);
+        taskPaneChartGroup.setExpanded(true);
 
         return jPanel;
     }
@@ -242,10 +241,13 @@ public class CenterPanel extends JPanel {
     public JSlider getRowSlider() {
         return rowSlider;
     }
-    public IntegerTableModel getTableModel() { return  tableModel; }
+    public IntegerTableModel getTableModel() { return tableView.getTableModel(); }
 
-    public JTaskPaneGroup getTaskPaneGroup() {
-        return taskPaneGroup;
+    public JTaskPaneGroup getTaskPaneCountGroup() {
+        return taskPaneCountGroup;
+    }
+    public JTaskPaneGroup getTaskPaneChartGroup() {
+        return taskPaneChartGroup;
     }
     public JDateChooser getDateChooser() {
         return dateChooser;

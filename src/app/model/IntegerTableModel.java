@@ -35,6 +35,16 @@ public class IntegerTableModel extends AbstractTableModel {
     public Integer[][] getIntegerValuesTable() {
         return data;
     }
+    public double[] getDoubleValues() {
+        double[] values = new double[countColumnTable*countRowTable];
+        int counter = 0;
+        for(int i=0; i<countRowTable; i++)
+            for(int j=0; j<countColumnTable; j++) {
+                values[counter] = (double)data[i][j];
+                counter++;
+            }
+        return values;
+    }
     public String getStringValuesTable() {
         String str = "";
         for(int i=0; i<countRowTable; i++)

@@ -2,11 +2,9 @@ package app.controller;
 
 import app.listeners.*;
 import app.view.CenterPanel;
-import com.l2fprod.common.swing.JTaskPaneGroup;
+import app.view.HistogramWindow;
 
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -17,6 +15,7 @@ import java.util.Date;
 
 public class CenterPanelController implements ActionListener {
     private CenterPanel _centerPanel;
+    private HistogramWindow histogramWindow;
     private String selectedOption;
     private Action sumAction, avgAction, minAction, maxAction;
 
@@ -62,7 +61,7 @@ public class CenterPanelController implements ActionListener {
                 }
             }
         });
-        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Sumowanie") {
+        _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Sumowanie") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SumListener(
@@ -73,7 +72,7 @@ public class CenterPanelController implements ActionListener {
                         .actionPerformed(e);
             }
         });
-        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Średnia") {
+        _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Średnia") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AvgListener(
@@ -84,7 +83,7 @@ public class CenterPanelController implements ActionListener {
                         .actionPerformed(e);
             }
         });
-        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Min") {
+        _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Min") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MinListener(
@@ -95,7 +94,7 @@ public class CenterPanelController implements ActionListener {
                         .actionPerformed(e);
             }
         });
-        _centerPanel.getTaskPaneGroup().add(new AbstractAction("Max") {
+        _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Max") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MaxListener(
@@ -104,6 +103,13 @@ public class CenterPanelController implements ActionListener {
                         _centerPanel.getTableModel().getRowCount(),
                         _centerPanel.getTableModel().getColumnCount())
                         .actionPerformed(e);
+            }
+        });
+        _centerPanel.getTaskPaneChartGroup().add(new AbstractAction("Histogram") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                histogramWindow = new HistogramWindow(_centerPanel);
+                histogramWindow.setVisible(true);
             }
         });
     }
