@@ -3,6 +3,8 @@ package app.view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TipOfTheDayWindow extends JFrame {
     private JLabel labelIcon, tipLabel;
@@ -23,7 +25,8 @@ public class TipOfTheDayWindow extends JFrame {
     public TipOfTheDayWindow(MyWindow myWindow)
     {
         super("Tip of the Day");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/author_logo.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass()
+                .getResource("/resources/author_logo.png")));
         // Losowanie indeksu dla wybrania losowego tipu
         randomIndex = (int) (Math.random() * tips.length);
         randomTip = tips[randomIndex];
@@ -46,8 +49,6 @@ public class TipOfTheDayWindow extends JFrame {
         tipAreaScrollPane = new JScrollPane(textArea);
         tipAreaScrollPane.setPreferredSize(new Dimension(120,100));
         labelIcon.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
-
-
 
         // Ustawianie layoutu
         setLayout(new BorderLayout());
@@ -79,7 +80,13 @@ public class TipOfTheDayWindow extends JFrame {
 
         prevButton.addActionListener(e -> showPreviousTip());
         nextButton.addActionListener(e -> showNextTip());
-        closeButton.addActionListener(e -> dispose());
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                _myWindow.getCenterPanel().setVisible(true);
+            }
+        });
 
         jPanel.add(prevButton);
         jPanel.add(nextButton);

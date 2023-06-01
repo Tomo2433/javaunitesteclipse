@@ -137,6 +137,7 @@ public class MyWindow extends JFrame implements Runnable{
     }
     public void createGUI(Icons icons){
         centerPanel = new CenterPanel();
+        centerPanel.setVisible(false);
         bottomStatusPanel = new BottomStatusPanel();
         jToolBar = createJToolBar(icons);
 
