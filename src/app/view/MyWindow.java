@@ -60,6 +60,7 @@ public class MyWindow extends JFrame implements Runnable{
                     createMenus(icons);
                     createGUI(icons);
                 }
+
             });
         }
         catch (Exception e){
@@ -76,7 +77,7 @@ public class MyWindow extends JFrame implements Runnable{
         openTipOfTheday();
     }
     public void openTipOfTheday() {
-        tipOfTheday = new TipOfTheDayWindow();
+        tipOfTheday = new TipOfTheDayWindow(this);
         tipOfTheday.setVisible(true);
     }
 

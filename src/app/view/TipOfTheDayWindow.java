@@ -1,10 +1,18 @@
 package app.view;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TipOfTheDayWindow extends JFrame {
-    private JLabel labelIcon;
+    private JLabel labelIcon, tipLabel;
+    private JScrollPane tipAreaScrollPane;
+    private JButton closeButton, prevButton, nextButton;
+    private JTextArea textArea;
+    private JPanel buttonsPanel;
+    private int randomIndex;
+    private String randomTip;
+    MyWindow _myWindow  = null;
     private String[] tips = {
             "Tip 1: Lorem ipsum dolor sit amet.",
             "Tip 2: Consectetur adipiscing elit.",
@@ -12,48 +20,86 @@ public class TipOfTheDayWindow extends JFrame {
             "Tip 4: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
             "Tip 5: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     };
-    public TipOfTheDayWindow()
+    public TipOfTheDayWindow(MyWindow myWindow)
     {
-
         super("Tip of the Day");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/author_logo.png")));
         // Losowanie indeksu dla wybrania losowego tipu
-        int randomIndex = (int) (Math.random() * tips.length);
-        String randomTip = tips[randomIndex];
+        randomIndex = (int) (Math.random() * tips.length);
+        randomTip = tips[randomIndex];
 
         // Tworzenie komponentów
+        _myWindow = myWindow;
         try {
             labelIcon = new JLabel(new ImageIcon(
-                    getClass().getResource("/resources/help.png")));
+                    getClass().getResource("/resources/idea.png")));
         }
         catch(Exception e) {
             labelIcon = new JLabel();
         }
-        JLabel tipLabel = new JLabel(randomTip);
-        JButton closeButton = new JButton("Close");
+        buttonsPanel = createTipButtons();
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        textArea.setBorder(new EmptyBorder(5,5,5,5));
+        tipAreaScrollPane = new JScrollPane(textArea);
+        tipAreaScrollPane.setPreferredSize(new Dimension(120,100));
+        labelIcon.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
+
+
 
         // Ustawianie layoutu
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+        setLayout(new BorderLayout());
 
         // Dodawanie komponentów do okna
-        add(tipLabel);
-        add(Box.createVerticalStrut(10)); // Dodatkowy odstęp
-        add(closeButton);
+        this.add(labelIcon, BorderLayout.WEST);
+        this.add(textArea, BorderLayout.CENTER);
+        this.add(buttonsPanel, BorderLayout.SOUTH);
 
         // Ustawianie preferowanego rozmiaru okna
-        this.setMaximumSize(new Dimension(330, 220));
+        setSize(330, 220);
         this.setResizable(false);
-        // Ustawianie położenia okna na środku ekranu
-        setLocationRelativeTo(null);
 
-        // Ustawianie zdarzenia dla przycisku zamykania
-        closeButton.addActionListener(e -> dispose());
-        closeButton.setMaximumSize(new Dimension(80, 30));
+        // Ustawianie okna "Tip of the Day" na środku ekranu
+        this.setLocationRelativeTo(null);
+
+        textArea.append(randomTip);
+        textArea.setFont(new Font("Helvetica",Font.BOLD,15));
 
         // Wyświetlanie okna
         setVisible(true);
-        pack();
+    }
+    public JPanel createTipButtons() {
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(new FlowLayout());
+        prevButton = new JButton("< prev");
+        nextButton = new JButton("next >");
+        closeButton = new JButton("Close");
+
+        prevButton.addActionListener(e -> showPreviousTip());
+        nextButton.addActionListener(e -> showNextTip());
+        closeButton.addActionListener(e -> dispose());
+
+        jPanel.add(prevButton);
+        jPanel.add(nextButton);
+        jPanel.add(closeButton);
+        return jPanel;
+    }
+    private void showPreviousTip() {
+        if (randomIndex > 0) {
+            randomIndex--;
+            textArea.setText(tips[randomIndex]);
+        }
+    }
+
+    private void showNextTip() {
+        if (randomIndex < tips.length - 1) {
+            randomIndex++;
+            textArea.setText(tips[randomIndex]);
+        }
     }
     public Insets getInsets() {
-        return new Insets(50,50,30,50);
+        return new Insets(50,20,20,20);
     }
 }
