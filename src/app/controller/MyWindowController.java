@@ -3,6 +3,7 @@ package app.controller;
 import app.listeners.*;
 import app.view.AboutWindow;
 import app.view.HelpWindow;
+import app.view.HistogramWindow;
 import app.view.MyWindow;
 
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 
 public class MyWindowController implements ActionListener {
     private MyWindow _myWindow;
+    private HistogramWindow histogramWindow;
     public MyWindowController(MyWindow myWindow){
         _myWindow = myWindow;
         _myWindow.getJtbAbout().addActionListener(this);
@@ -23,6 +25,7 @@ public class MyWindowController implements ActionListener {
         _myWindow.getExitMenuItem().addActionListener(this);
         _myWindow.getJtbPrint().addActionListener(this);
         _myWindow.getPrintMenuItem().addActionListener(this);
+        _myWindow.getHistogramMenuItem().addActionListener(this);
         _myWindow.getJtbSave().addActionListener(new SaveListener(
                 _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea(),
@@ -121,6 +124,9 @@ public class MyWindowController implements ActionListener {
         } else if ((e.getSource() == _myWindow.getPrintMenuItem()) ||
                 (e.getSource() == _myWindow.getJtbPrint())) {
             _myWindow.printListForm();
+        } else if (e.getSource() == _myWindow.getHistogramMenuItem()) {
+            histogramWindow = new HistogramWindow(_myWindow.getCenterPanel());
+            histogramWindow.setVisible(true);
         }
     }
 }

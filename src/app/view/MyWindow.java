@@ -1,5 +1,9 @@
 package app.view;
 
+import com.l2fprod.common.swing.JTipOfTheDay;
+import com.l2fprod.common.swing.tips.DefaultTip;
+import com.l2fprod.common.swing.tips.DefaultTipModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,20 +15,22 @@ public class MyWindow extends JFrame implements Runnable{
 
     private static final long serialVersionUID = 1L;
     private final int WINDOW_WIDTH_SIZE = 680;
-    private final int WINDOW_HEIGHT_SIZE = 450;
+    private final int WINDOW_HEIGHT_SIZE = 490;
     private static final String ICON_PATH = "/resources/";
     private JPanel contentPane;
     private CenterPanel centerPanel;
     private BottomStatusPanel bottomStatusPanel;
     AboutWindow aboutWindow = null;
     HelpWindow helpWindow = null;
+    HistogramWindow histogramWindow = null;
     TipOfTheDayWindow tipOfTheday = null;
 
 
     //menu variables definition
     private JMenu fileMenu, editMenu, viewMenu, calculationsMenu, helpMenu;
     private JMenuItem exitMenuItem, aboutMenuItem, helpMenuItem, printMenuItem,
-            sigmaMenuItem, avgMenuItem, minMenuItem, maxMenuItem, saveMenuItem;
+            sigmaMenuItem, avgMenuItem, minMenuItem, maxMenuItem, saveMenuItem,
+            histogramMenuItem;
     private JCheckBoxMenuItem viewStatusBarMenuItem, viewJToolBarMenuItem;
 
     //toolbar variables definition
@@ -77,6 +83,11 @@ public class MyWindow extends JFrame implements Runnable{
         openTipOfTheday();
     }
     public void openTipOfTheday() {
+//        DefaultTipModel spis_porad = new DefaultTipModel();
+//        spis_porad.add(new DefaultTip("tip1","Treść naszej pierwszej porady."));
+//        spis_porad.add(new DefaultTip("tip2","Treść naszej drugiej porady."));
+//        JTipOfTheDay porady = new JTipOfTheDay(spis_porad);
+//        porady.showDialog(this);
         tipOfTheday = new TipOfTheDayWindow(this);
         tipOfTheday.setVisible(true);
     }
@@ -109,6 +120,8 @@ public class MyWindow extends JFrame implements Runnable{
                 KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
         maxMenuItem = createJMenuItem("Maksimum", icons.mIconMax,
                 KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
+        histogramMenuItem = createJMenuItem("Histogram", icons.mIconChart,
+                KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
 
         viewStatusBarMenuItem = createJCheckBoxMenuItem(
                 "Ukryj pasek statusu",false);
@@ -118,6 +131,7 @@ public class MyWindow extends JFrame implements Runnable{
 
         fileMenu.add(saveMenuItem);
         fileMenu.add(printMenuItem);
+        fileMenu.add(histogramMenuItem);
         fileMenu.add(exitMenuItem);
         viewMenu.add(viewStatusBarMenuItem);
         viewMenu.add(viewJToolBarMenuItem);
@@ -342,6 +356,7 @@ public class MyWindow extends JFrame implements Runnable{
     public JMenuItem getSaveMenuItem() {
         return saveMenuItem;
     }
+    public JMenuItem getHistogramMenuItem() { return  histogramMenuItem; }
 
     public AboutWindow getAboutWindow() {
         return aboutWindow;

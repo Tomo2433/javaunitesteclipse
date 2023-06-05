@@ -18,6 +18,7 @@ public class TableView {
 
         table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
+        table.setRowHeight(25);
         tableScrollPane.setPreferredSize(new Dimension(500,100));
         tableScrollPane.setViewportView(table);
     }

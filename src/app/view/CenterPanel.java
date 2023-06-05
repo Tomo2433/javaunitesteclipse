@@ -18,7 +18,8 @@ public class CenterPanel extends JPanel {
     private JPanel parameterPanel, tablePanel, operationsPanel,
                     resultPanel,operationsButtonsPanel, taskPanePanel;
     private JTaskPane taskPane;
-    private JTaskPaneGroup taskPaneCountGroup, taskPaneChartGroup;
+    private JTaskPaneGroup taskPaneCountGroup, taskPaneChartGroup,
+                            taskPaneHelpGroup;
     protected JTextField numberTextField, rowTextField, colTextField;
     protected JTextArea resultTextArea = new JTextArea();
     private JScrollPane tableScrollPane, textAreaScrollPane;
@@ -186,6 +187,7 @@ public class CenterPanel extends JPanel {
         taskPane = new JTaskPane();
         taskPaneCountGroup = new JTaskPaneGroup();
         taskPaneChartGroup = new JTaskPaneGroup();
+        taskPaneHelpGroup = new JTaskPaneGroup();
         jPanel.setLayout(new BorderLayout());
         jPanel.add("Center", new JScrollPane(taskPane));
 
@@ -193,10 +195,14 @@ public class CenterPanel extends JPanel {
         taskPaneCountGroup.setIcon(icons.mIconSigma);
         taskPaneChartGroup.setTitle("Wykres");
         taskPaneChartGroup.setIcon(icons.mIconChart);
+        taskPaneHelpGroup.setTitle("Pomoc");
+        taskPaneHelpGroup.setIcon(icons.mIconHelp);
         taskPane.add(taskPaneCountGroup);
         taskPane.add(taskPaneChartGroup);
+        taskPane.add(taskPaneHelpGroup);
         taskPaneCountGroup.setExpanded(false);
         taskPaneChartGroup.setExpanded(true);
+        taskPaneHelpGroup.setExpanded(false);
 
         return jPanel;
     }
@@ -249,6 +255,11 @@ public class CenterPanel extends JPanel {
     public JTaskPaneGroup getTaskPaneChartGroup() {
         return taskPaneChartGroup;
     }
+
+    public JTaskPaneGroup getTaskPaneHelpGroup() {
+        return taskPaneHelpGroup;
+    }
+
     public JDateChooser getDateChooser() {
         return dateChooser;
     }

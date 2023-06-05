@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         MyWindow myWindow = new MyWindow();
         MyWindowController myWindowController = new MyWindowController(myWindow);
-        CenterPanelController centerPanelController = new CenterPanelController(myWindow.getCenterPanel());
+        CenterPanelController centerPanelController = new CenterPanelController(myWindow.getCenterPanel(), myWindow);
         myWindow.setVisible(true);
     }
 }

@@ -1,8 +1,7 @@
 package app.controller;
 
 import app.listeners.*;
-import app.view.CenterPanel;
-import app.view.HistogramWindow;
+import app.view.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,12 +14,14 @@ import java.util.Date;
 
 public class CenterPanelController implements ActionListener {
     private CenterPanel _centerPanel;
+    private MyWindow _myWindow;
     private HistogramWindow histogramWindow;
     private String selectedOption;
     private Action sumAction, avgAction, minAction, maxAction;
 
-    public CenterPanelController(CenterPanel centerPanel) {
+    public CenterPanelController(CenterPanel centerPanel, MyWindow myWindow) {
         _centerPanel = centerPanel;
+        _myWindow = myWindow;
         _centerPanel.getJbtAdd().addActionListener(new AddValueListener(
                 _centerPanel.getNumberTextField(),
                 _centerPanel.getRowSlider(),
@@ -110,6 +111,23 @@ public class CenterPanelController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 histogramWindow = new HistogramWindow(_centerPanel);
                 histogramWindow.setVisible(true);
+            }
+        });
+        _centerPanel.getTaskPaneHelpGroup().add(new AbstractAction("O autorze") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(_myWindow.getAboutWindow() != null) _myWindow.getAboutWindow().setVisible(true);
+                else {
+                    _myWindow.setAboutWindow(new AboutWindow());
+                    _myWindow.getAboutWindow().setVisible(true);
+                }
+            }
+        });
+        _centerPanel.getTaskPaneHelpGroup().add(new AbstractAction("Pomoc") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _myWindow.setHelpWindow(new HelpWindow());
+                _myWindow.getHelpWindow().setVisible(true);
             }
         });
     }
