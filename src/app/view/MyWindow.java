@@ -10,7 +10,7 @@ import java.net.URL;
 public class MyWindow extends JFrame implements Runnable{
 
     private static final long serialVersionUID = 1L;
-    private final int WINDOW_WIDTH_SIZE = 670;
+    private final int WINDOW_WIDTH_SIZE = 680;
     private final int WINDOW_HEIGHT_SIZE = 450;
     private static final String ICON_PATH = "/resources/";
     private JPanel contentPane;
