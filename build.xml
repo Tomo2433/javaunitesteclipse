@@ -1,0 +1,88 @@
+<project name="MyJavaUniProject" default="all" basedir=".">
+
+    <!-- Definicja właściwości -->
+    <property name="src.dir" value="src" />
+    <property name="bin.dir" value="bin" />
+    <property name="doc.dir" value="doc" />
+    <property name="dist.dir" value="dist" />
+    <property name="main.class" value="Main" />
+
+    <!-- Tworzenie struktury katalogów i rozmieszczenie plików -->
+    <target name="prepare">
+        <mkdir dir="${bin.dir}" />
+        <mkdir dir="${doc.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <copy todir="${bin.dir}">
+            <fileset dir="${src.dir}">
+                <include name="**/*.java" />
+                <include name="log4j2.xml" />
+            </fileset>
+        </copy>
+        <copy todir="${bin.dir}/resources">
+            <fileset dir="${src.dir}/resources">
+                <include name="**/*.png" />
+            </fileset>
+        </copy>
+        <copy todir="${bin.dir}/help">
+            <fileset dir="${src.dir}/help">
+                <include name="**/*.html" />
+                <include name="**/*.jpg" />
+                <include name="**/*.png" />
+            </fileset>
+        </copy>
+        <copy todir="${bin.dir}/lib">
+            <fileset dir="${src.dir}/lib">
+                <include name="**/*.jar" />
+            </fileset>
+        </copy>
+    </target>
+
+    <path id="classpath">
+        <fileset dir="${src.dir}">
+            <include name="lib/**/*.jar"/>
+        </fileset>
+    </path>
+    <!-- Kompilowanie plików źródłowych Java -->
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <!-- Tworzenie dokumentacji Javadoc -->
+    <target name="javadoc" depends="compile">
+        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+            <classpath refid="classpath"/>
+        </javadoc>
+    </target>
+
+    <!-- Tworzenie wykonywalnego archiwum aplikacji JAR -->
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/MyJavaProject.jar" basedir="${bin.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Uruchamianie aplikacji z katalogu bin -->
+    <target name="run" depends="compile">
+        <java fork="true" classname="${main.class}">
+            <classpath>
+                <path location="${bin.dir}" />
+                <path refid="classpath.ref" />
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Definicja referencji do ścieżki klasy -->
+    <path id="classpath.ref">
+        <fileset dir="${bin.dir}/lib">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- Główny cel, który wykonuje wszystkie zadania -->
+    <target name="all" depends="prepare, compile, javadoc, jar, run" />
+
+</project>

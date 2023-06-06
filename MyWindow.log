@@ -16,3 +16,5 @@ INFO  2023-06-06 12:46:27 [MyLogger.java] MyLogger:24 - Start Aplikacji
 INFO  2023-06-06 12:47:24 [MyLogger.java] MyLogger:24 - Start Aplikacji
 INFO  2023-06-06 16:00:09 [MyLogger.java] MyLogger:30 - Start Aplikacji
 INFO  2023-06-06 16:00:46 [MyLogger.java] MyLogger:30 - Zamykanie aplikacji
+INFO  2023-06-06 22:01:38 [null] MyLogger:-1 - Start Aplikacji
+INFO  2023-06-06 22:01:47 [null] MyLogger:-1 - Zamykanie aplikacji
