@@ -19,7 +19,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>SaveListener</code> definiująca nasłuch dla metody zapisu
+ * danych tabeli do pliku
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class SaveListener implements ActionListener {
     private IntegerTableModel tableModel;
     private JTextArea textArea;
@@ -28,12 +34,23 @@ public class SaveListener implements ActionListener {
     private String filePath;
     private FileFilter selectedFileFilter, textFilter, pdfFilter;
     private int rows, cols;
+
+    /**
+     * Kontruktor klasy <code>SaveListener</code>
+     * @param tableModel
+     * @param textArea
+     */
     public SaveListener(IntegerTableModel tableModel, JTextArea textArea){
         this.tableModel = tableModel;
         this.rows = tableModel.getRowCount();
         this.cols = tableModel.getColumnCount();
         this.textArea = textArea;
     }
+
+    /**
+     * Metoda wywołująca okno wyboru miejsca zapisu
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e){
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setDialogTitle("Zapisz plik");
@@ -57,6 +74,9 @@ public class SaveListener implements ActionListener {
         }
     }
 
+    /**
+     * Metoda zapisu danych do pliku *.txt
+     */
     private void saveToTextFile() {
         if (!file.getName().endsWith(".txt")) {
             file = new File(file.getAbsolutePath() + ".txt");
@@ -82,6 +102,10 @@ public class SaveListener implements ActionListener {
             ioex.printStackTrace();
         }
     }
+
+    /**
+     * Metoda wykonująca eksport danych do pliku pdf
+     */
     private void exportToPdf() {
         Document document = new Document();
         try {

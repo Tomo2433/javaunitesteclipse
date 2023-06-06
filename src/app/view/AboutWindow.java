@@ -8,7 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>AboutWindow</code> definiujaca okno o autorze
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class AboutWindow extends JDialog implements ActionListener {
 
     private JLabel lLogo, lBorder;
@@ -20,7 +25,9 @@ public class AboutWindow extends JDialog implements ActionListener {
     private JButton jbtOk;
     private Border line = null;
 
-
+    /**
+     * Konstruktor bezparametrowy
+     */
     public AboutWindow(){
         this.setTitle("Informacje o programie");
         this.setModal(true);
@@ -89,6 +96,10 @@ public class AboutWindow extends JDialog implements ActionListener {
         contentPane.add(lLogo);
     }
 
+    /**
+     * Metoda akcji
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbtOk){

@@ -11,7 +11,13 @@ import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>CenterPanelController</code> obsługującej zdarzenia dla widoku
+ * panelu centralnego i jego elementów łącznie z tabelą
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class CenterPanelController implements ActionListener {
     private CenterPanel _centerPanel;
     private MyWindow _myWindow;
@@ -19,6 +25,11 @@ public class CenterPanelController implements ActionListener {
     private String selectedOption;
     private Action sumAction, avgAction, minAction, maxAction;
 
+    /**
+     * Kontruktor klasy <code>CenterPanelController</code>
+     * @param centerPanel
+     * @param myWindow
+     */
     public CenterPanelController(CenterPanel centerPanel, MyWindow myWindow) {
         _centerPanel = centerPanel;
         _myWindow = myWindow;
@@ -41,6 +52,11 @@ public class CenterPanelController implements ActionListener {
         _centerPanel.getJbtCount().addActionListener(e1 -> _centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
         _centerPanel.getDateChooser().addPropertyChangeListener("date", new PropertyChangeListener() {
+            /**
+             * Wybór i wypisanie daty
+             * @param evt A PropertyChangeEvent object describing the event source
+             *          and the property that has changed.
+             */
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if ("date".equals(evt.getPropertyName())) {
@@ -57,6 +73,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Sumowanie") {
+            /**
+             * Wywołanie akcji sumowania
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SumListener(
@@ -66,6 +86,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Średnia") {
+            /**
+             * Wywołanie akcji średniej
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AvgListener(
@@ -75,6 +99,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Min") {
+            /**
+             * Wywołanie akcji minimum
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MinListener(
@@ -84,6 +112,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneCountGroup().add(new AbstractAction("Max") {
+            /**
+             * wywołanie akcji maximum
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MaxListener(
@@ -93,6 +125,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneChartGroup().add(new AbstractAction("Histogram") {
+            /**
+             * Wywołanie okna histogramu
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 histogramWindow = new HistogramWindow(_centerPanel);
@@ -100,6 +136,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneHelpGroup().add(new AbstractAction("O autorze") {
+            /**
+             * Wywołanie okna o autorze
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(_myWindow.getAboutWindow() != null) _myWindow.getAboutWindow().setVisible(true);
@@ -110,6 +150,10 @@ public class CenterPanelController implements ActionListener {
             }
         });
         _centerPanel.getTaskPaneHelpGroup().add(new AbstractAction("Pomoc") {
+            /**
+             * Wywołanie okna pomocy
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 _myWindow.setHelpWindow(new HelpWindow());
@@ -118,6 +162,10 @@ public class CenterPanelController implements ActionListener {
         });
     }
 
+    /**
+     * Wybór operacji na combobox
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         for(ActionListener l : _centerPanel.getJbtCount().getActionListeners())

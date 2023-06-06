@@ -7,12 +7,26 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>FillTableListener</code> definiująca nasłuch dla metody
+ * wypełniania tabeli
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class FillTableListener implements ActionListener {
 
     private IntegerTableModel tableModel;
     private JTextArea textArea;
     private JTextField textField;
     private int rows, cols;
+
+    /**
+     * Kontruktor dla klasy <code>FillTableListener</code>
+     * @param tableModel
+     * @param textArea
+     * @param textField
+     */
     public FillTableListener(IntegerTableModel tableModel,
                              JTextArea textArea, JTextField textField){
         this.tableModel = tableModel;
@@ -22,6 +36,10 @@ public class FillTableListener implements ActionListener {
         this.textField = textField;
     }
 
+    /**
+     * Metoda akcji wypełniania tabeli
+     * @param e the event to be processed
+     */
     public void actionPerformed(ActionEvent e) {
         try{
         int value = Integer.parseInt(textField.getText());

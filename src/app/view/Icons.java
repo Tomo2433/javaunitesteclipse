@@ -3,6 +3,12 @@ package app.view;
 import javax.swing.*;
 import java.net.URL;
 
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>Icons</code> definiujaca ikony dla aplikacji
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class Icons {
     //icons definition
     public Icon iconExit, iconAbout, iconHelp, iconAdd,
@@ -17,6 +23,11 @@ public class Icons {
     Icons(){
         createIcons();
     }
+    /**
+     * Metoda tworzaca obiekt typu Icon
+     * @param nameFile zmienna określająca nazwę pliku
+     * @return zwraca obiekt typu Icon
+     */
     public Icon createMyIcon(String nameFile){
         String name = ICON_PATH + nameFile;
         Icon icon = null;
@@ -24,6 +35,10 @@ public class Icons {
         if(url != null) icon = new ImageIcon(url);
         return icon;
     }
+
+    /**
+     * Metoda tworząca ikony z obrazkiem
+     */
     private void createIcons(){
         //create 24x24px icons for toolbar
         iconExit = createMyIcon("exit.png");

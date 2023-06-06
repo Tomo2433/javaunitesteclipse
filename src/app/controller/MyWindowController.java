@@ -10,10 +10,21 @@ import app.view.MyWindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>MyWindowController</code> definiująca zdarzenia dla okna
+ * głównego mywindow
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class MyWindowController implements ActionListener {
     private MyWindow _myWindow;
     private HistogramWindow histogramWindow;
+
+    /**
+     * Kontruktor klasy <code>MyWindowController</code>
+     * @param  myWindow
+     */
     public MyWindowController(MyWindow myWindow){
         _myWindow = myWindow;
         _myWindow.getJtbAbout().addActionListener(this);
@@ -71,6 +82,11 @@ public class MyWindowController implements ActionListener {
                 _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea()));
     }
+
+    /**
+     * Wywołanie zdarzeń dla odpowienich przycisków menu w oknie głównym
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == _myWindow.getJtbAbout() ||

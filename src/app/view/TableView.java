@@ -3,9 +3,13 @@ package app.view;
 import app.model.IntegerTableModel;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>TableView</code> definiujaca widok tabeli
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class TableView {
     private JScrollPane tableScrollPane;
     private IntegerTableModel tableModel;
@@ -23,14 +27,26 @@ public class TableView {
         tableScrollPane.setViewportView(table);
     }
 
+    /**
+     * Metoda zwraca tabele
+     * @return zwraca JTable
+     */
     public JTable getTable() {
         return table;
     }
 
+    /**
+     * Metoda zwraca table scroll pane
+     * @return JScrollPane
+     */
     public JScrollPane getTableScrollPane() {
         return tableScrollPane;
     }
 
+    /**
+     * Metoda zwraca model tabeli integer
+     * @return zwraca obiekt IntegerTableModel
+     */
     public IntegerTableModel getTableModel() {
         return tableModel;
     }

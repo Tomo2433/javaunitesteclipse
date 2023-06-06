@@ -14,13 +14,23 @@ import org.jfree.data.statistics.HistogramDataset;
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import java.awt.*;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>HistogramWindow</code> definiujaca okno wykresu histogramu
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class HistogramWindow extends JFrame {
     private HistogramDataset histogramDataset;
     private CenterPanel _centerPanel;
     private IntegerTableModel tableModel;
     private double[] tableValues;
     ChartPanel chartPanel;
+
+    /**
+     * kontruktor z parametrem
+     * @param centerPanel
+     */
     public HistogramWindow(CenterPanel centerPanel) {
         setTitle("Histogram");
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass()
@@ -42,6 +52,13 @@ public class HistogramWindow extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
     }
+
+    /**
+     * Metofa generująca wykres
+     * @param name
+     * @param dataArray
+     * @return zwraca JfreeChart
+     */
     private static JFreeChart getHistogramChart(String name, double[] dataArray)
     {
         String plotTitle = name;

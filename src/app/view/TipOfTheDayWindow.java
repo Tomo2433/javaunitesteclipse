@@ -7,7 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>TipOfTheDay</code> definiujaca okno tip of the day
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class TipOfTheDayWindow extends JFrame {
     private JLabel labelIcon, tipLabel;
     private JScrollPane tipAreaScrollPane;
@@ -24,6 +29,11 @@ public class TipOfTheDayWindow extends JFrame {
             "Tip 4: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
             "Tip 5: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     };
+
+    /**
+     * Kontruktor z parametrem
+     * @param myWindow
+     */
     public TipOfTheDayWindow(MyWindow myWindow)
     {
         super("Tip of the Day");
@@ -80,6 +90,11 @@ public class TipOfTheDayWindow extends JFrame {
         // Wyświetlanie okna
         setVisible(true);
     }
+
+    /**
+     * Metoda tworząca przyciski
+     * @return Zwraca Jpanel
+     */
     public JPanel createTipButtons() {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout());
@@ -102,19 +117,28 @@ public class TipOfTheDayWindow extends JFrame {
         jPanel.add(closeButton);
         return jPanel;
     }
+
+    /**
+     * Metoda obsługująca zmiane porady do tyłu
+     */
     private void showPreviousTip() {
         if (randomIndex > 0) {
             randomIndex--;
             textArea.setText(tips[randomIndex]);
         }
     }
-
+    /**
+     * Metoda obsługująca zmiane porady do przodu
+     */
     private void showNextTip() {
         if (randomIndex < tips.length - 1) {
             randomIndex++;
             textArea.setText(tips[randomIndex]);
         }
     }
+    /**
+     * Metoda tworżaca marginesy wewnętrzne
+     */
     public Insets getInsets() {
         return new Insets(50,20,20,20);
     }

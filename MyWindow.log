@@ -14,3 +14,5 @@ ERROR 2023-06-06 12:31:43 [MyLogger.java] MyLogger:26 - Błąd podana wartość 
 INFO  2023-06-06 12:38:33 [MyLogger.java] MyLogger:24 - Start Aplikacji
 INFO  2023-06-06 12:46:27 [MyLogger.java] MyLogger:24 - Start Aplikacji
 INFO  2023-06-06 12:47:24 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 16:00:09 [MyLogger.java] MyLogger:30 - Start Aplikacji
+INFO  2023-06-06 16:00:46 [MyLogger.java] MyLogger:30 - Zamykanie aplikacji

@@ -12,7 +12,12 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Date;
-
+/**
+ * Program <code>MyWindow</code>
+ * Klasa Klasa <code>CenterPanel</code> definiująca panel centralny aplikacji
+ * @author T.Lech
+ * @version 1.0	05/06/2023
+ */
 public class CenterPanel extends JPanel {
 
     private JPanel parameterPanel, tablePanel, operationsPanel,
@@ -37,7 +42,9 @@ public class CenterPanel extends JPanel {
     private Icons icons;
     private TableView tableView;
 
-
+    /**
+     * Konstruktor bezparametrowy klasy <code>CenterPanel</code>
+     */
     public CenterPanel() {
         icons = new Icons();
         tableView = new TableView();
@@ -45,6 +52,11 @@ public class CenterPanel extends JPanel {
         comboBoxModel = new SimpleComboBoxModel();
         createGUI(icons);
     }
+
+    /**
+     * Metoda tworząca gui panelu centralnego
+     * @param icons
+     */
     public void createGUI(Icons icons) {
         this.setLayout(new BorderLayout());
         taskPanePanel = createJTaskPane(icons);
@@ -60,6 +72,11 @@ public class CenterPanel extends JPanel {
         this.add(operationsButtonsPanel, BorderLayout.EAST);
         this.add(resultPanel, BorderLayout.SOUTH);
     }
+
+    /**
+     * Metoda tworząca panel parametrów dodawanej wartości
+     * @return JPanel
+     */
     public JPanel createParametersPanel() {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout());
@@ -109,6 +126,11 @@ public class CenterPanel extends JPanel {
 
         return jPanel;
     }
+
+    /**
+     * Metoda tworząca panel z tabela
+     * @return
+     */
     public JPanel createTablePanel() {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new BorderLayout());
@@ -122,6 +144,12 @@ public class CenterPanel extends JPanel {
 
         return jPanel;
     }
+
+    /***
+     * Metoda tworząca panel przycisków operacji
+     * @param icons
+     * @return JPanel
+     */
     public JPanel createOperationsButtonsPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
@@ -142,6 +170,11 @@ public class CenterPanel extends JPanel {
         return jPanel;
     }
 
+    /**
+     * Metoda zwraca panel operacji
+     * @param icons
+     * @return JPanel
+     */
     public JPanel createOperationPanel(Icons icons){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -163,6 +196,11 @@ public class CenterPanel extends JPanel {
 
         return jPanel;
     }
+
+    /**
+     * Metoda zwreaca Panel wyniku
+     * @return JPanel
+     */
     public JPanel createResultPanel() {
         JPanel jPanel = new JPanel();
 
@@ -182,6 +220,12 @@ public class CenterPanel extends JPanel {
 
         return jPanel;
     }
+
+    /**
+     * Metoda tworzy Panel task pane
+     * @param icons
+     * @return JPanel
+     */
     public JPanel createJTaskPane(Icons icons) {
         JPanel jPanel = new JPanel();
         taskPane = new JTaskPane();
@@ -207,6 +251,12 @@ public class CenterPanel extends JPanel {
         return jPanel;
     }
 
+    /**
+     * Metoda tworzy przycisk
+     * @param text
+     * @param icon
+     * @return JButton
+     */
     private JButton createJButton(String text, Icon icon){
         JButton jButton = new JButton(text, icon);
         jButton.setMaximumSize(new Dimension(100,23));
@@ -214,52 +264,119 @@ public class CenterPanel extends JPanel {
         return jButton;
     }
 
+    /**
+     * Metoda tworzy wewnętrze marginesy
+     * @return
+     */
     public Insets getInsets() {
         return new Insets(5,10,10,10);
     }
+
+    /**
+     * metoda zwraca jbtAdd
+     * @return Jbutton
+     */
     public JButton getJbtAdd() {
         return jbtAdd;
     }
+    /**
+     * metoda zwraca jbtZero
+     * @return Jbutton
+     */
     public JButton getJbtZero() {
         return jbtZero;
     }
+    /**
+     * metoda zwraca jbtFill
+     * @return Jbutton
+     */
     public JButton getJbtFill() {
         return jbtFill;
     }
+    /**
+     * metoda zwraca jbtSave
+     * @return Jbutton
+     */
     public JButton getJbtSave() {
         return jbtSave;
     }
+    /**
+     * metoda zwraca jbtCount
+     * @return Jbutton
+     */
     public JButton getJbtCount() {
         return jbtCount;
     }
+    /**
+     * metoda zwraca combobox
+     * @return JCombobox
+     */
     public JComboBox getjComboBox() {
         return jComboBox;
     }
+
+    /**
+     * Metoda zwraca obszar tekstu
+     * @return JtextArea
+     */
     public JTextArea getResultTextArea() {
         return resultTextArea;
     }
+    /**
+     * Metoda zwraca pole tekstowe
+     * @return JtextArea
+     */
     public JTextField getNumberTextField() {
         return numberTextField;
     }
+    /**
+     * Metoda zwraca Slider wyboru kolumny
+     * @return JSlider
+     */
     public JSlider getColumnSlider() {
         return columnSlider;
     }
+    /**
+     * Metoda zwraca Slider wyboru wiersza
+     * @return JSlider
+     */
     public JSlider getRowSlider() {
         return rowSlider;
     }
+
+    /**
+     * Metoda zwraca obiekt IntegerTableModel;
+     * @return IntegerTableModel
+     */
     public IntegerTableModel getTableModel() { return tableView.getTableModel(); }
 
+    /**
+     * Metoda Zwraca grupę zadań obliczeń
+     * @return JTaskPane
+     */
     public JTaskPaneGroup getTaskPaneCountGroup() {
         return taskPaneCountGroup;
     }
+
+    /**
+     * Metoda Zwraca grupę zadań wykresu
+     * @return JTaskPane
+     */
     public JTaskPaneGroup getTaskPaneChartGroup() {
         return taskPaneChartGroup;
     }
-
+    /**
+     * Metoda Zwraca grupę zadań pomopcy
+     * @return JTaskPane
+     */
     public JTaskPaneGroup getTaskPaneHelpGroup() {
         return taskPaneHelpGroup;
     }
 
+    /**
+     * Metoda zwraca wybierak daty
+     * @return JDateChooser
+     */
     public JDateChooser getDateChooser() {
         return dateChooser;
     }
