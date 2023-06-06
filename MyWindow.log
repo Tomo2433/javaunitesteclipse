@@ -1,0 +1,16 @@
+INFO  2023-06-06 12:23:54 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:24:07 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:24:18 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:24:25 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:24:28 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:25:22 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:25:26 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:25:31 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:25:33 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:25:38 [MyLogger.java] MyLogger:24 - Zamkniecie aplikacji
+INFO  2023-06-06 12:26:24 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:31:35 [MyLogger.java] MyLogger:24 - Start Aplikacji
+ERROR 2023-06-06 12:31:43 [MyLogger.java] MyLogger:26 - Błąd podana wartość nie jest liczbą
+INFO  2023-06-06 12:38:33 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:46:27 [MyLogger.java] MyLogger:24 - Start Aplikacji
+INFO  2023-06-06 12:47:24 [MyLogger.java] MyLogger:24 - Start Aplikacji

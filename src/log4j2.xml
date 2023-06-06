@@ -2,10 +2,10 @@
 <Configuration>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%-5p %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1}:%L - %m%n"/>
+            <PatternLayout pattern="%-5p %d{yyyy-MM-dd HH:mm:ss} [%F] %c{1}:%L - %m%n"/>
         </Console>
-        <File name="File" fileName="app.log">
-            <PatternLayout pattern="%-5p %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1}:%L - %m%n"/>
+        <File name="File" fileName="MyWindow.log">
+            <PatternLayout pattern="%-5p %d{yyyy-MM-dd HH:mm:ss} [%F] %c{1}:%L - %m%n"/>
         </File>
     </Appenders>
     <Loggers>

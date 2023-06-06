@@ -11,11 +11,10 @@ public class ZeroTableValuesListener implements ActionListener {
     private IntegerTableModel tableModel;
     private JTextArea textArea;
     private int rows, cols;
-    public ZeroTableValuesListener(IntegerTableModel tableModel, int rows,
-                                   int cols, JTextArea textArea){
+    public ZeroTableValuesListener(IntegerTableModel tableModel, JTextArea textArea){
         this.tableModel = tableModel;
-        this.rows = rows;
-        this.cols = cols;
+        this.rows = tableModel.getRowCount();
+        this.cols = tableModel.getColumnCount();
         this.textArea = textArea;
     }
     public void actionPerformed(ActionEvent e){

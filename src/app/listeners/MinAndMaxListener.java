@@ -13,12 +13,11 @@ public class MinAndMaxListener implements ActionListener {
     private int value;
 
 
-    public MinAndMaxListener(IntegerTableModel tableModel, JTextArea textArea,
-                             int rows, int cols){
+    public MinAndMaxListener(IntegerTableModel tableModel, JTextArea textArea){
         this.tableModel = tableModel;
         this.textArea = textArea;
-        this.rows = rows;
-        this.cols = cols;
+        this.rows = tableModel.getRowCount();
+        this.cols = tableModel.getColumnCount();
     }
     public void actionPerformed(ActionEvent e) {
         int max = (int) tableModel.getValueAt(0, 0);

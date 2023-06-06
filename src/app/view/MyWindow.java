@@ -51,8 +51,8 @@ public class MyWindow extends JFrame implements Runnable{
             @Override
             public void windowClosing(WindowEvent e) {
                 bottomStatusPanel.getInfoTextField().setText("Zamykanie aplikacji");
-                MyLogger.writeLog("INFO","Zamkniecie aplikacji");
                 windowClose();
+                MyLogger.writeLog("INFO","Zamykanie aplikacji");
             }
         });
 

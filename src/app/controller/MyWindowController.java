@@ -29,64 +29,40 @@ public class MyWindowController implements ActionListener {
         _myWindow.getHistogramMenuItem().addActionListener(this);
         _myWindow.getJtbSave().addActionListener(new SaveListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(), 
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getSaveMenuItem().addActionListener(new SaveListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getSigmaMenuItem().addActionListener(new SumListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbSigma().addActionListener(new SumListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getAvgMenuItem().addActionListener(new AvgListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbAvg().addActionListener(new AvgListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getMinMenuItem().addActionListener(new MinListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbMin().addActionListener(new MinListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbMax().addActionListener(new MaxListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getMaxMenuItem().addActionListener(new MaxListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getResultTextArea(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount()));
+                _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbFill().addActionListener(new FillTableListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount(),
                 _myWindow.getCenterPanel().getResultTextArea(),
                 _myWindow.getCenterPanel().getNumberTextField()));
         _myWindow.getJtbZero().addActionListener(new ZeroTableValuesListener(
                 _myWindow.getCenterPanel().getTableModel(),
-                _myWindow.getCenterPanel().getTableModel().getRowCount(),
-                _myWindow.getCenterPanel().getTableModel().getColumnCount(),
                 _myWindow.getCenterPanel().getResultTextArea()));
         _myWindow.getJtbAdd().addActionListener(new AddValueListener(
                 _myWindow.getCenterPanel().getNumberTextField(),
@@ -94,7 +70,6 @@ public class MyWindowController implements ActionListener {
                 _myWindow.getCenterPanel().getColumnSlider(),
                 _myWindow.getCenterPanel().getTableModel(),
                 _myWindow.getCenterPanel().getResultTextArea()));
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -121,7 +96,7 @@ public class MyWindowController implements ActionListener {
         } else if((e.getSource() == _myWindow.getExitMenuItem()) ||
                 (e.getSource() == _myWindow.getJtbExit())) {
             _myWindow.getBottomStatusPanel().getInfoTextField().setText("Zamykanie aplikacji");
-            MyLogger.writeLog("INFO","Zamkniecie aplikacji");
+            MyLogger.writeLog("INFO","Zamykanie aplikacji");
             _myWindow.windowClose();
         } else if ((e.getSource() == _myWindow.getPrintMenuItem()) ||
                 (e.getSource() == _myWindow.getJtbPrint())) {

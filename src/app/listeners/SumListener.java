@@ -12,12 +12,11 @@ public class SumListener implements ActionListener {
     private int rows, cols;
     private int sum;
 
-    public SumListener(IntegerTableModel tableModel, JTextArea textArea,
-                       int rows, int cols){
+    public SumListener(IntegerTableModel tableModel, JTextArea textArea){
         this.tableModel = tableModel;
         this.textArea = textArea;
-        this.rows = rows;
-        this.cols = cols;
+        this.rows = tableModel.getRowCount();
+        this.cols = tableModel.getColumnCount();
     }
     public void actionPerformed(ActionEvent e) {
         sum = 0;

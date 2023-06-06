@@ -30,20 +30,14 @@ public class CenterPanelController implements ActionListener {
                 _centerPanel.getResultTextArea()));
         _centerPanel.getJbtZero().addActionListener(new ZeroTableValuesListener(
                 _centerPanel.getTableModel(),
-                _centerPanel.getTableModel().getRowCount(),
-                _centerPanel.getTableModel().getColumnCount(),
                 _centerPanel.getResultTextArea()));
         _centerPanel.getJbtFill().addActionListener(new FillTableListener(
                 _centerPanel.getTableModel(),
-                _centerPanel.getTableModel().getRowCount(),
-                _centerPanel.getTableModel().getColumnCount(),
                 _centerPanel.getResultTextArea(),
                 _centerPanel.getNumberTextField()));
         _centerPanel.getJbtSave().addActionListener(new SaveListener(
                 _centerPanel.getTableModel(),
-                _centerPanel.getResultTextArea(),
-                _centerPanel.getTableModel().getRowCount(),
-                _centerPanel.getTableModel().getColumnCount()));
+                _centerPanel.getResultTextArea()));
         _centerPanel.getJbtCount().addActionListener(e1 -> _centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         _centerPanel.getjComboBox().addActionListener(this);
         _centerPanel.getDateChooser().addPropertyChangeListener("date", new PropertyChangeListener() {
@@ -67,9 +61,7 @@ public class CenterPanelController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 new SumListener(
                         _centerPanel.getTableModel(),
-                        _centerPanel.getResultTextArea(),
-                        _centerPanel.getTableModel().getRowCount(),
-                        _centerPanel.getTableModel().getColumnCount())
+                        _centerPanel.getResultTextArea())
                         .actionPerformed(e);
             }
         });
@@ -78,9 +70,7 @@ public class CenterPanelController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 new AvgListener(
                         _centerPanel.getTableModel(),
-                        _centerPanel.getResultTextArea(),
-                        _centerPanel.getTableModel().getRowCount(),
-                        _centerPanel.getTableModel().getColumnCount())
+                        _centerPanel.getResultTextArea())
                         .actionPerformed(e);
             }
         });
@@ -89,9 +79,7 @@ public class CenterPanelController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 new MinListener(
                         _centerPanel.getTableModel(),
-                        _centerPanel.getResultTextArea(),
-                        _centerPanel.getTableModel().getRowCount(),
-                        _centerPanel.getTableModel().getColumnCount())
+                        _centerPanel.getResultTextArea())
                         .actionPerformed(e);
             }
         });
@@ -100,9 +88,7 @@ public class CenterPanelController implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 new MaxListener(
                         _centerPanel.getTableModel(),
-                        _centerPanel.getResultTextArea(),
-                        _centerPanel.getTableModel().getRowCount(),
-                        _centerPanel.getTableModel().getColumnCount())
+                        _centerPanel.getResultTextArea())
                         .actionPerformed(e);
             }
         });
@@ -140,21 +126,15 @@ public class CenterPanelController implements ActionListener {
         if (selectedOption.equals("Sumowanie")){
             _centerPanel.getJbtCount().addActionListener(new SumListener(
                     _centerPanel.getTableModel(),
-                    _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableModel().getRowCount(),
-                    _centerPanel.getTableModel().getColumnCount()));
+                    _centerPanel.getResultTextArea()));
         } else if (selectedOption.equals("Średnia")) {
             _centerPanel.getJbtCount().addActionListener(new AvgListener(
                     _centerPanel.getTableModel(),
-                    _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableModel().getRowCount(),
-                    _centerPanel.getTableModel().getColumnCount()));
+                    _centerPanel.getResultTextArea()));
         } else if (selectedOption.equals("Min i Max")) {
             _centerPanel.getJbtCount().addActionListener(new MinAndMaxListener(
                     _centerPanel.getTableModel(),
-                    _centerPanel.getResultTextArea(),
-                    _centerPanel.getTableModel().getRowCount(),
-                    _centerPanel.getTableModel().getColumnCount()));
+                    _centerPanel.getResultTextArea()));
         } else {
             _centerPanel.getJbtCount().addActionListener(e1->_centerPanel.getResultTextArea().append("Wybierz operacje! \n"));
         }

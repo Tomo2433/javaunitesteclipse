@@ -13,11 +13,11 @@ public class FillTableListener implements ActionListener {
     private JTextArea textArea;
     private JTextField textField;
     private int rows, cols;
-    public FillTableListener(IntegerTableModel tableModel, int rows, int cols,
+    public FillTableListener(IntegerTableModel tableModel,
                              JTextArea textArea, JTextField textField){
         this.tableModel = tableModel;
-        this.rows = rows;
-        this.cols = cols;
+        this.rows = tableModel.getRowCount();
+        this.cols = tableModel.getColumnCount();
         this.textArea = textArea;
         this.textField = textField;
     }
