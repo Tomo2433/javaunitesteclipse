@@ -1,5 +1,6 @@
 package app.listeners;
 
+import app.Logger.MyLogger;
 import app.model.IntegerTableModel;
 
 import javax.swing.*;
@@ -32,6 +33,7 @@ public class FillTableListener implements ActionListener {
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame,
                     "Błąd podana wartość nie jest liczbą!!!" );
+            MyLogger.writeLog("ERROR","Błąd podana wartość nie jest liczbą");
         }
     }
 }

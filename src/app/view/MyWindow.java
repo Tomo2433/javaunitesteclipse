@@ -1,5 +1,6 @@
 package app.view;
 
+import app.Logger.MyLogger;
 import com.l2fprod.common.swing.JTipOfTheDay;
 import com.l2fprod.common.swing.tips.DefaultTip;
 import com.l2fprod.common.swing.tips.DefaultTipModel;
@@ -50,6 +51,7 @@ public class MyWindow extends JFrame implements Runnable{
             @Override
             public void windowClosing(WindowEvent e) {
                 bottomStatusPanel.getInfoTextField().setText("Zamykanie aplikacji");
+                MyLogger.writeLog("INFO","Zamkniecie aplikacji");
                 windowClose();
             }
         });
@@ -71,6 +73,7 @@ public class MyWindow extends JFrame implements Runnable{
         }
         catch (Exception e){
             System.out.println("ERROR - error while creating gui of application");
+            MyLogger.writeLog("ERROR","error while creating gui of application");
         }
         Thread thread = new Thread(this);
         thread.start();
@@ -173,6 +176,7 @@ public class MyWindow extends JFrame implements Runnable{
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame,
                     "Nastąpił błąd drukowania!" );
+            MyLogger.writeLog("ERROR","Blad drukowania");
         }
     }
     public Icon createMyIcon(String nameFile){

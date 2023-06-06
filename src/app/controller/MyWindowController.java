@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.Logger.MyLogger;
 import app.listeners.*;
 import app.view.AboutWindow;
 import app.view.HelpWindow;
@@ -120,6 +121,7 @@ public class MyWindowController implements ActionListener {
         } else if((e.getSource() == _myWindow.getExitMenuItem()) ||
                 (e.getSource() == _myWindow.getJtbExit())) {
             _myWindow.getBottomStatusPanel().getInfoTextField().setText("Zamykanie aplikacji");
+            MyLogger.writeLog("INFO","Zamkniecie aplikacji");
             _myWindow.windowClose();
         } else if ((e.getSource() == _myWindow.getPrintMenuItem()) ||
                 (e.getSource() == _myWindow.getJtbPrint())) {

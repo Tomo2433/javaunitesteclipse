@@ -1,5 +1,6 @@
 package app.listeners;
 
+import app.Logger.MyLogger;
 import app.model.IntegerTableModel;
 
 import javax.swing.*;
@@ -51,6 +52,7 @@ public class SaveListener implements ActionListener {
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame,
                         "Błąd nie znaleziono pliku!!!");
+                MyLogger.writeLog("ERROR","Nie znaleziono pliku");
                 ioex.printStackTrace();
             }
         }
