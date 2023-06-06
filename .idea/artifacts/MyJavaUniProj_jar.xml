@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MyJavaUniProj:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyJavaUniProj_jar</output-path>
+    <root id="archive" name="MyJavaUniProj.jar">
+      <element id="module-output" name="MyJavaUniProj" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/itextpdf-5.5.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/jcommon-1.0.23.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/jfreechart-1.0.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/log4j-api-2.20.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/l2fprod-common-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/jcalendar-1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/log4j-core-2.20.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
