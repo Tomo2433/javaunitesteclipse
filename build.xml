@@ -5,6 +5,7 @@
     <property name="bin.dir" value="bin" />
     <property name="doc.dir" value="doc" />
     <property name="dist.dir" value="dist" />
+	<property name="lib.dir" value="lib" />
     <property name="main.class" value="Main" />
 
     <!-- Tworzenie struktury katalogów i rozmieszczenie plików -->
@@ -31,15 +32,15 @@
             </fileset>
         </copy>
         <copy todir="${bin.dir}/lib">
-            <fileset dir="${src.dir}/lib">
+            <fileset dir="${lib.dir}">
                 <include name="**/*.jar" />
             </fileset>
         </copy>
     </target>
 
     <path id="classpath">
-        <fileset dir="${src.dir}">
-            <include name="lib/**/*.jar"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
         </fileset>
     </path>
     <!-- Kompilowanie plików źródłowych Java -->
@@ -77,7 +78,7 @@
 
     <!-- Definicja referencji do ścieżki klasy -->
     <path id="classpath.ref">
-        <fileset dir="${bin.dir}/lib">
+        <fileset dir="${lib.dir}">
             <include name="**/*.jar" />
         </fileset>
     </path>
